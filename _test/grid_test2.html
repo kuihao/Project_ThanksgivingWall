@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+			<style>
+			*{
+				padding:0;
+				margin:0;
+				box-sizing:boder-box;
+			}
+			
+			body{
+				display:flex;
+				justify-content:center;
+				padding-top: 50px;
+			}
+			
+			.container{
+				width:80%;
+				margin:0 auto;				
+			}
+			
+			.grid{
+				display:grid;
+				grid-template-columns:repeat(3, 1fr);
+				grid-template-rows:200px minmax(100px, max-content);/*可搭配 max/min-content,auto*/
+				grid-gap:20px 50px;/*row,col;若單值則間距都相同*/
+			}
+			
+			@media only screen and (max-width: 600px) {
+				.grid {
+					grid-template-columns:repeat(1,1fr);
+					grid-template-rows:repeat(6, minmax(100px, max-content));
+				}
+			}
+			
+			.grid>div{
+				width:100%;
+				color:white;
+				font-size:20px;
+				background:#A25EC9;
+				border: 1px solid white;
+				/* Alignment Text only*/
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			} 
+			</style>
+			<title>Test Grid2</title>
+	</head>
+	<body>
+		<div class="container grid">
+			<div>box 1</div>
+			<div>box 2</div>
+			<div>box 3</div>
+			<div>box 4 hello worldhello world<br>hello worldhello world<br>hello worldhello world<br>hello worldhello world<br>worldhello world<br>hello worldhello world<br>hello worldhello world<br>hello worldhello world<br></div>
+			<div>box 5</div>
+			<div>box 6</div>
+		</div>
+	</body>
+</html>
+<script></script>
+
+<!--
+fr fractional unit ~= flex-grow (free space)
+-->
