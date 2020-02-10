@@ -9,10 +9,12 @@ $datas=get_position_status();
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<!--CSS--><link rel="stylesheet" href="./_css/homepage_setgrid.css" type="text/css">			
+		<!--CSS-->
+		<link rel="stylesheet" href="./_css/homepage.css" type="text/css">			
 		<title>感恩牆</title>
 	</head>
 	<body>
+	<!--img src="_files/image/test_breakfast.jpg" alt="Smiley face" height="42" width="42"-->
 		<div id="id_canvas" class="container grid">
 			<?php if(!empty($datas)):?>
 				<?php foreach($datas as $row):?>

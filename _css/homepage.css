@@ -1,20 +1,43 @@
-.button{
-    background-color: #ffffff;
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;	
+*{
+	padding:0;
+	margin:0;
+	box-sizing:boder-box;
 }
 
-.button.allowable{
-	background-color: green;
-}
-.button.forbidden{
-	background-color: red;
+body{
+	display:flex;
+	justify-content:center;
+	padding: 50px 0 50px 0;
 }
 
+.container{
+	width:80%;
+	margin:0 auto;				
+}
+
+.grid{
+	display:grid;
+	/*width*/grid-template-columns:repeat(4, 200px);
+	/*height*/grid-template-rows:repeat(4, 200px);
+	grid-gap:0;/*row,col*/
+}
+
+@media only screen and (max-width: 600px) {
+	.grid {
+		grid-template-columns:repeat(4,minmax(50px, max-content));
+		grid-template-rows:repeat(4,minmax(50px, max-content));
+	}
+}
+
+.grid>div{
+	width:100%;
+	//hight:100%;
+	color:white;
+	font-size:20px;
+	background:#A25EC9;
+	border: 0 /*solid white*/;
+	/* Alignment Text only*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} 
