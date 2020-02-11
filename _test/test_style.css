@@ -1,1 +1,53 @@
- 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: boder-box;
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.convas{
+    background: orange url('../_files/image/test_breakfast.jpg') no-repeat center;/**/
+    background-size: contain;
+}
+
+.container {
+    width: 80%;/*控制grid Frame寬度*/
+    margin:0 auto;
+    /*height: 100vh;!!!!*/
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:repeat(4,1fr); 
+    grid-template-rows:repeat(3,1fr);
+    /*grid-template-columns:minmax(300px,1fr) 1fr 1fr 1fr;*//*RWD應用*/
+    grid-gap:10px;
+    border: 1px solid blue;
+    justify-content: center;
+}
+
+/*
+@media only screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns:repeat(4,minmax(25vw,1fr));
+        justify-content: center;
+    }
+}*/
+
+.grid>div {
+    /*巧思：父層用grid子層用Flexbox*/
+    width: 100%;
+    background: rgba(0, 0, 0, 30%);
+    color: white;
+    border: 1px solid white;
+    /* Alignment Text only*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
