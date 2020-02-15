@@ -4,14 +4,28 @@
 # 然而，此規範是有生效日期及限制：
 #	(1)當.gitignore檔案被add至Staged file才會開始生效，但只適用於Untracked file(git status 紅色狀態)
 #	(2)如果開發到一半，你才加入 .gitignore 了話，之前被加入 Git 版控的檔案將不會被排除，
-#	   這些已經加入的檔案將持續被 Git 追蹤。此時可以用這個語法，用以清除欲忽略的tracked Files：
-#		git rm -r --cached .
-#		git add .
+#	   這些已經加入的檔案將持續被 Git 追蹤。
+#	   若一個檔案在 .gitignore 之前就存在了。.gitignore只對規則設定之後的檔案有效，那些已經存在的檔案就像既得利益者一樣，這些規則是對他們沒有效果的。需要把這些既得利益者移出 Git 控管。
+#	   此時可以用這個語法，用以清除欲忽略的tracked Files：
+#		git rm -r --cached 檔案名稱
+#		git add 檔案名稱
 #		git commit -m 'update .gitignore'
 #		(git rm -r --cached . 中的 -r 代表遞迴 (Recursive)，用來遞迴搜尋每個資料夾下的檔案。)
+#		
+# 另外，各式專案、IDE(Integrated Development Environment 整合開發環境)、(編譯器?)等，
+# 可至此網站搜尋他人整理出來的公制設定：https://www.gitignore.io/
+# 還有，若想強制加入忽略清單中的檔案，可使用這個語法：
+#		$ git add -f 檔案名稱
+#		一旦闖關成功，就不再忽略這個檔案，爾後也會加入檔管行列。(可參考：https://gitbook.tw/chapters/using-git/ignore.html)
+#
+# 如果想要一口氣清除那些已經被忽略的檔案，可以使用 git clean 指令並配合 -X 參數：
+# $ git clean -fX
+# 那個額外加上的 -f 參數是指強制刪除的意思，這樣一來就可清除那些被忽略的檔案。
+#
 #--以下為本專案的忽略清單--#
 dashboard/
 gittest/
 img/
 webalizer/
 xampp/
+

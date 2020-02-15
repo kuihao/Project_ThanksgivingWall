@@ -1,10 +1,19 @@
 <style>
+	body{
+		box-sizing: border-box;
+		display:flex;
+		flex-direction: column;
+		align-items: center;
+	}
 	#id_msg01{
 	resize: none;
 	}
+	
 </style>
 <html>
-	<div><input type="button" value="01"></input></div>
+<body>
+	<p style="font-size: 35px;">填寫資料</p>
+	<!--div><input type="button" value="01"></input></div-->
 	<div>
 		<form method="GET" action="http://127.0.0.1/append.php">
 			Position:A-01
@@ -17,5 +26,7 @@
 			<textarea id="id_msg01" name="n_msg01" cols="30" rows="5"></textarea><br>
 			<input type="submit" value="訂位"></input>
 		</form>
-	</div>	
+	</div>
+	<input type ="button" onclick="history.back()" value="回到上一頁"></input>	
+</body>
 </html>

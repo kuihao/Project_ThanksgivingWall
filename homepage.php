@@ -12,7 +12,7 @@ $datas=get_position_status();
 		<link rel="stylesheet" href="./_css/homepage.css" type="text/css">
 		<title>感恩牆</title>
 	</head>
-	<body>
+	<body>ㄋ
 		<div class="container grid">
 			<!--需加入DBphp取圖片--><img class="box" src="../_files/image/test_breakfast.jpg">
 			<?php if(!empty($datas)):?>
