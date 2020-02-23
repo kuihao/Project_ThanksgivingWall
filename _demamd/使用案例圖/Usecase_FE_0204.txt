@@ -1,0 +1,18 @@
+@startuml
+:使用者:
+rectangle 感恩牆系統_前台{
+    (放大圖案並顯示部分個資)<<待確認>>
+    
+    使用者->(首頁：圖片牆)
+    (首頁：圖片牆)<-(空位):點擊
+    (首頁：圖片牆)<-down-(佔位):點擊
+    (空位)->(報名:填寫個資)
+    (佔位)->(放大圖案並顯示部分個資)
+}
+
+newpage
+:actor2: --> (Usecase2)
+note "top to bottom direction" as n1
+note "left to right direction" as n2
+
+@enduml

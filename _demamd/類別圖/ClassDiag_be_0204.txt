@@ -1,0 +1,16 @@
+@startuml
+Class login_php
+Class 後端管理頁_page_php
+Class 個資_list_php
+Class 個資_edit_php
+Class 個資_dele_php
+Class section_confirm_php
+Class 寄信_php
+
+login_php -> section_confirm_php
+section_confirm_php --> 後端管理頁_page_php
+後端管理頁_page_php -> 個資_list_php
+後端管理頁_page_php <-- 個資_edit_php
+後端管理頁_page_php <-- 個資_dele_php
+後端管理頁_page_php <-- 寄信_php
+@enduml

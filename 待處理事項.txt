@@ -1,0 +1,2 @@
+把function放進functions.php
+設定新的資料庫 TWDB:user,works,theme
