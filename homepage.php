@@ -14,7 +14,7 @@ $datas=get_position_status();
 	</head>
 	<body>
 		<div class="container grid">
-			<!--需加入DBphp取圖片--><img class="box" src="../_files/image/test_breakfast.jpg">
+			<!--需加入DBphp取圖片><img class="box" src="../_files/webelement/test_breakfast.jpg"-->
 			<?php if(!empty($datas)):?>
 				<?php foreach($datas as $row):?>
 					<?php if($row['STATUS']==0):?>
