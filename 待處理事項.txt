@@ -1,4 +1,7 @@
+把每個test串進homepage
+修改更新update、insert功能
 把function放進functions.php
+php mailer and line msgAPI
 (待確認)每個框框可以放大功能的話 可以用 php?<echo {id}> 放大頁面用get接id
 設定新的資料庫 TWDB:user,works,theme
 限制目錄瀏覽+404頁設定
