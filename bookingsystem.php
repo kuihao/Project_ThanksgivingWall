@@ -1,19 +1,23 @@
-<style>
-	body{
-		box-sizing: border-box;
-		display:flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	#id_msg01{
-	resize: none;
-	}
-	
-</style>
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<style>
+		body{
+			box-sizing: border-box;
+			display:flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		#id_msg01{
+		resize: none;
+		}
+		
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>感恩牆>填寫劃位資料</title>
+</head>
 <body>
-	<p style="font-size: 35px;">填寫資料</p>
-	<!--div><input type="button" value="01"></input></div-->
 	<div>
 		<form method="GET" action="http://127.0.0.1/append.php">
 			Position:A-01
