@@ -2,9 +2,9 @@
 @session_start();
 
 /*get the position and status of blocks. status:0=empty,1=occupied,-1=temprary lock*/
-function get_position_status(){
+function get_position_and_status($zone){
   $datas = array();
-  $sql = "SELECT `POS`,`STATUS` FROM `booking_info`";
+  $sql = "SELECT POS,STATUS FROM `booking_info` WHERE POS LIKE ('$zone%')";
   $rst =@mysqli_query($_SESSION['con'], $sql);
 
   if($rst){
@@ -27,13 +27,18 @@ function set_block($x, $y)
 	$sql='';
 	for($i=0;$i<$x;$i++){
 		$pos_row=chr(ord('A')+$i);
-		for($j=0;$j<$y;$j++){
-			$pos_col=$j+1;
-			$pos=$pos_row."-".$pos_col;
-			$sql ="INSERT INTO booking_info(POS,STATUS) VALUES ('{$pos}','0')";
-			//echo "{$pos}.OK<br>";
+		for($j=1;$j<=$y;$j++){
+      if($j<=9):
+        $pos_col='0'.$j;
+      else:
+        $pos_col=$j;
+      endif;
+      $pos=$pos_row."-".$pos_col;
+
+    	$sql ="INSERT INTO booking_info(POS,STATUS) VALUES ('{$pos}','0')";
+      echo "{$pos}.OK<br>";
 			$rst=@mysqli_query($_SESSION['con'],$sql);
-			if($rst){echo "{$pos}.OK";}else{"{$pos}.fail";}
+    	if($rst){echo "{$pos}.OK";}else{"{$pos}.fail";}
 		}
 	}
 }

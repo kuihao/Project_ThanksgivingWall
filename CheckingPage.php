@@ -1,3 +1,8 @@
+<?php
+phpinfo();
+require_once './_php_library/connect.php';
+@session_start();
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -20,15 +25,15 @@
 <body>
 	<div>
 		<form method="GET" action="http://127.0.0.1/append.php">
-			Position:A-01
+			Position:<?php ?>
 			<input type="hidden" id="id_pos01" name="n_pos01"></input><br>
 			Name:
-			<input type="text" id="id_name01" name="n_name01"></input><br>
+			<input type="hidden" id="id_name01" name="n_name01"></input><br>
 			PhoneNumber:
-			<input type="text" id="id_phnum01" name="n_phnum01"></input><br>
+			<input type="hidden" id="id_phnum01" name="n_phnum01"></input><br>
 			Message:<br>
-			<textarea id="id_msg01" name="n_msg01" cols="30" rows="5"></textarea><br>
-			<input type="submit" value="訂位"></input>
+			<textarea type="hidden" id="id_msg01" name="n_msg01" cols="30" rows="5"></textarea><br>
+			<input type="submit" value="確認資料無誤，送出"></input>
 		</form>
 	</div>
 	<input type ="button" onclick="history.back()" value="回到上一頁"></input>	

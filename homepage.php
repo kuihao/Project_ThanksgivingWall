@@ -1,7 +1,5 @@
 <?php
 require_once './_php_library/connect.php';
-require_once './_php_library/functions.php';
-/*$datas=get_position_status();*/
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -14,22 +12,21 @@ require_once './_php_library/functions.php';
 	</head>
 	<body>
 		<div id="id_container_picture" class="container grid Bob">
-    		<img class="layer_picture box_picture" src="./_files/webelement/test_breakfast.jpg" alt=" This is a painting picture.">
-    		<div id="id_container_parts" class="container grid Alice"></div>
+    		<img class="layer_picture box_picture" src="./_files/canvas/test_breakfast.jpg" alt=" This is a painting picture.">
+    		<div id="id_container_parts" class="container grid Alice">
+				<?php for($i=0;$i<16;$i++): ?>
+					<?php $zone=chr(ord('A')+$i);?>
+					<div class='layer_parts box_parts' onclick=LinkTo_ChooingPage('<?php echo $zone;?>')>
+						<?php echo "第".$zone."區"; ?>
+					</div>
+				<?php endfor?>
+			</div>
 		</div>
 	</body>
 </html>
 <script>
-	function LinkTo_ChoicePage(){
-    window.location.href='ChoosingPage.php';
-	}
-	function SetParts(){
-		var i,s;
-		for(i=1,s='';i<=16;i++){
-			s+="<div class='layer_parts box_parts' onclick=LinkTo_ChoicePage()>第"+i+"區</div>";
-		}
-		document.getElementById("id_container_parts").innerHTML=s;
-	}
-	SetParts();
+    function LinkTo_ChooingPage(zone){
+        window.location.href = 'ChoosingPage.php?zone='+zone;
+    }
 </script>
 <?php mysqli_close($_SESSION['con']); ?>

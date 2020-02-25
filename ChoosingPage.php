@@ -1,7 +1,8 @@
 <?php
 require_once './_php_library/connect.php';
 require_once './_php_library/functions.php';
-$datas=get_position_status();
+$zone=$_GET['zone'];
+$datas=get_position_and_status($zone);
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -14,14 +15,15 @@ $datas=get_position_status();
 	</head>
 	<body>
         <div id="id_container_picture" class="container grid Bob">
-            <img class="layer_picture box_picture" src="../_files/webelement/test_breakfast_swap_part1x1.jpg"
+            <img class="layer_picture box_picture" src="./_files/canvas/test_breakfast_part_<?php echo $zone;?>.jpg"
                 alt=" This is a painting picture.">
             <div id="id_container_parts" class="container grid Alice">
             <?php if(!empty($datas)):?>
                 <?php foreach($datas as $row):?>
-                    <div class='layer_parts box_parts' onclick=LinkTo_ChoicePage()><?php echo $row['STATUS'].' '.$row['POS'];?></div>
+                    <div class='layer_parts box_parts' onclick=LinkTo_BookingPage("<?php echo $row['POS'] ?>")><?php echo $row['POS'].', 狀態:'.$row['STATUS'];?></div>
                 <?php endforeach; ?>
-                <?php else: ?><h3>Position datas return error!</h3>
+            <?php else: ?>
+                <h3>PHP's get_position_and_status() return error!</h3>
 			<?php endif; ?> 
             </div>
         </div>
@@ -29,17 +31,8 @@ $datas=get_position_status();
 	</body>
 </html>
 <script>
-    function LinkTo_ChoicePage() {
-        window.location.href = 'bookingsystem.php';
+    function LinkTo_BookingPage(pos) {
+        window.location.href = 'BookingPage.php?pos='+pos;
     }
-
-    function SetParts() {
-        var i, s;
-        for (i = 1, s = ''; i <= 16; i++) {
-            s += "<div class='layer_parts box_parts' onclick=LinkTo_ChoicePage()>位置A-0" + i + "</div>";
-        }
-        document.getElementById("id_container_parts").innerHTML = s;
-    }
-    /*SetParts();*/
 </script>
 <?php mysqli_close($_SESSION['con']); ?>
