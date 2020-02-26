@@ -1,7 +1,5 @@
 <?php
-phpinfo();
 require_once './_php_library/connect.php';
-@session_start();
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -20,9 +18,12 @@ require_once './_php_library/connect.php';
 	</style>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>感恩牆>填寫劃位資料</title>
+	<title>感恩牆>確認填寫資料</title>
 </head>
 <body>
+<?php
+	//if(isset($_SESSION['ChooseThisPos'])&&$_SESSION['ChooseThisPos'] == true):
+?>
 	<div>
 		<form method="GET" action="http://127.0.0.1/append.php">
 			Position:<?php ?>
@@ -36,6 +37,13 @@ require_once './_php_library/connect.php';
 			<input type="submit" value="確認資料無誤，送出"></input>
 		</form>
 	</div>
-	<input type ="button" onclick="history.back()" value="回到上一頁"></input>	
+    <input type ="button" onclick="history.back()" value="回到上一頁"></input>
+<?php
+	/*
+	else:
+		header('location: ChoosingPage.php');
+	endif;*/
+?>
 </body>
 </html>
+<?php mysqli_close($_SESSION['con']); ?>

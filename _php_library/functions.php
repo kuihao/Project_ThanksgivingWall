@@ -1,6 +1,22 @@
 <?php
 @session_start();
 
+function get_status($pos){
+  $data=0;
+  /*--$sql是SQL操作指令--*/
+  $sql = "SELECT STATUS FROM `booking_info` WHERE POS LIKE ('$pos')";
+  /*--mysqli_query()執行SQL操作，select指令會回傳SQL分類結果陣列，其他指令回傳True--*/
+  $rst =@mysqli_query($_SESSION['con'], $sql);
+  if($rst){
+    $data=mysqli_fetch_assoc($rst);/*讀取陣列資料：mysqli_fetch_assoc($rst)是以欄位名稱作為索引標籤，並回傳矩陣*/
+    //print_r($rst);
+    //echo '<br>';
+    //print_r($data);
+  }else{echo "{$sql} comes out error".mysqli_error($_SESSION['con']);}
+  mysqli_free_result($rst);
+  return $data['STATUS'];
+}
+
 /*get the position and status of blocks. status:0=empty,1=occupied,-1=temprary lock*/
 function get_position_and_status($zone){
   $datas = array();
@@ -8,8 +24,8 @@ function get_position_and_status($zone){
   $rst =@mysqli_query($_SESSION['con'], $sql);
 
   if($rst){
-    if(mysqli_num_rows($rst) > 0){
-      while ($row = mysqli_fetch_assoc($rst)){
+    if(mysqli_num_rows($rst) > 0){ /*mysqli_num_rows($rst)回傳result矩陣的列數量*/
+      while ($row = mysqli_fetch_assoc($rst)){ 
         $datas[] = $row;
       }
     }
@@ -62,5 +78,10 @@ function get_article($id)
     echo "{$sql} 語法執行失敗，錯誤訊息：" . mysqli_error($_SESSION['link']);
   }
   return $result;
+}
+
+/*狀態更新：占用(STATUS=-1)*/
+function set_statusToblock($pos){
+$sql = "UPDATE `booking_info` SET `STATUS`=-1 WHERE `POS`='$pos'";
 }
 ?>
