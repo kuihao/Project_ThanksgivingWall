@@ -22,6 +22,22 @@ require_once './_php_library/connect.php';
 </head>
 <body>
 <?php
+// 定義變數並設定為空值
+$resultErr = "";
+//表單已被提交，並且應該對其進行驗證。如果未提交，則跳過驗證並顯示一個空白表單。
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if (empty($_POST["name"]) || empty($_POST["password"])) {
+     $resultErr = "姓名或密碼不能為空";
+   }  else {
+     //存入session
+    $_SESSION['name'] =$_POST["name"];
+    $_SESSION['pwd']  = $_POST["password"];
+   }   
+}
+?>
+
+<?php
+	/*session 先驗證 ，最後確認時再傳至資料庫，思考tolen要用亂數或是T/F*/
 	//if(isset($_SESSION['ChooseThisPos'])&&$_SESSION['ChooseThisPos'] == true):
 ?>
 	<div>

@@ -53,5 +53,7 @@ echo $_SESSION['pwd'];
 </body>
 
 </html>
+<!--
 $_SERVER["PHP_SELF"]可改成下一個網址
 then 第一塊session驗證就是放下一個網址
+-->

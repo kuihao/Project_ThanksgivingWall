@@ -1,7 +1,7 @@
 <?php
 require_once './_php_library/connect.php';
 require_once './_php_library/functions.php';
-$pos = $_GET['pos'];
+$pos = ($_GET['pos']);
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -16,23 +16,57 @@ $pos = $_GET['pos'];
 		#id_msg01{
 		resize: none;
 		}
-		
+		.error {
+            color: #FF0000;
+        }
 	</style>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>感恩牆>填寫劃位資料</title>
 </head>
 <body>
+<?php
+// 定義變數並設定為空值
+$resultErr1 = "";
+$resultErr2 = "";
+//表單已被提交，並且應該對其進行驗證。如果未提交，則跳過驗證並顯示一個空白表單。
+if ($_SERVER["REQUEST_METHOD"] == "POST"):
+	if(!empty($_POST["n_name"])):
+		$_SESSION['name'] =$_POST["n_name"];
+	else:
+		$resultErr1 = "姓名不能空白<br>";
+	endif;
+	if(!empty($_POST["n_pnum"])):
+		$_SESSION['telphone_number'] =$_POST["n_pnum"];
+	else:
+		$resultErr2= "電話號碼不能空白<br>";
+	endif;
+	if(!empty($_POST["n_msg"])):
+		$_SESSION['message'] =$_POST["n_msg"];
+	endif;
+	if(isset($_SESSION['name'])&&isset($_SESSION['telphone_number'])):
+	//header('location: CheckingPage.php');
+	echo 'session is ready';
+	endif;
+endif;
+?>
+
 	<?php if(get_status($pos)==0): ?>
-		<form method="POST" action="http://127.0.0.1/CheckingPage.php">
+	<?php
+		/*此處要回傳block至DB */
+	?>
+
+		<form method="POST" action="<?php echo (htmlspecialchars($_SERVER["PHP_SELF"]))."?pos=$pos";?>">
 			Position:<?php echo $pos; ?>
-			<input type="hidden" id="id_pos01" name="n_pos01"></input><br>
+			<input type="hidden" id="id_pos" name="n_pos" ></input><br>
 			Name:
-			<input type="text" id="id_name01" name="n_name01"></input><br>
+			<input type="text" id="id_name" name="n_name" value="<?php echo $_SESSION['name'] ?>"></input><br>
+			<span class="error"> <?php echo $resultErr1;?></span>
 			PhoneNumber:
-			<input type="text" id="id_phnum01" name="n_phnum01"></input><br>
+			<input type="text" id="id_pnum" name="n_pnum" value="<?php echo $_SESSION['telphone_number'] ?>"></input><br>
+			<span class="error"> <?php echo $resultErr2;?></span>
 			Message:<br>
-			<textarea id="id_msg01" name="n_msg01" cols="30" rows="5"></textarea><br>
+			<textarea id="id_msg" name="n_msg" cols="30" rows="5" value="<?php echo $_SESSION['message'] ?>"></textarea><br>
 			<input type="submit" value="訂位"></input>
 		</form>
 		<input type ="button" onclick="history.back()" value="回到上一頁"></input>	
