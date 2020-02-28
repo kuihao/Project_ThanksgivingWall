@@ -1,5 +1,13 @@
 <?php
 require_once './_php_library/connect.php';
+if (isset($_POST['submit'])) { 
+	if ($_SESSION['is_submit'] == '0') { 
+	$_SESSION['is_submit'] = '1'; 
+	echo "程式碼塊，要做的事，程式碼...<a onclick='history.go(-1);' href='javascript:void(0)'>返回</a>"; 
+	} else { 
+	echo "請不用重複提交<a href='index.php'>PHP SESSION防止表單重複提交</a>"; 
+	} 
+	}
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -22,18 +30,8 @@ require_once './_php_library/connect.php';
 </head>
 <body>
 <?php
-// 定義變數並設定為空值
-$resultErr = "";
-//表單已被提交，並且應該對其進行驗證。如果未提交，則跳過驗證並顯示一個空白表單。
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["name"]) || empty($_POST["password"])) {
-     $resultErr = "姓名或密碼不能為空";
-   }  else {
-     //存入session
-    $_SESSION['name'] =$_POST["name"];
-    $_SESSION['pwd']  = $_POST["password"];
-   }   
-}
+
+
 ?>
 
 <?php
@@ -41,17 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//if(isset($_SESSION['ChooseThisPos'])&&$_SESSION['ChooseThisPos'] == true):
 ?>
 	<div>
-		<form method="GET" action="http://127.0.0.1/append.php">
-			Position:<?php ?>
-			<input type="hidden" id="id_pos01" name="n_pos01"></input><br>
+			Position:
+			<?php echo $_SESSION['pos']?><br>
 			Name:
-			<input type="hidden" id="id_name01" name="n_name01"></input><br>
+			<?php echo $_SESSION['name']?><br>
 			PhoneNumber:
-			<input type="hidden" id="id_phnum01" name="n_phnum01"></input><br>
-			Message:<br>
-			<textarea type="hidden" id="id_msg01" name="n_msg01" cols="30" rows="5"></textarea><br>
+			<?php echo $_SESSION['telphone_number']?><br>
+			Message:
+			<?php echo $_SESSION['message']?><br>
 			<input type="submit" value="確認資料無誤，送出"></input>
-		</form>
+			<?php /*直接把sesstion資料送至DB 或再使用DB*/ ?>
 	</div>
     <input type ="button" onclick="history.back()" value="回到上一頁"></input>
 <?php

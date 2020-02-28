@@ -84,4 +84,10 @@ function get_article($id)
 function set_statusToblock($pos){
 $sql = "UPDATE `booking_info` SET `STATUS`=-1 WHERE `POS`='$pos'";
 }
+
+function form_echo_check( $var ){
+  if(!empty($_SESSION[$var]))
+  return $_SESSION[$var];
+}
+
 ?>
