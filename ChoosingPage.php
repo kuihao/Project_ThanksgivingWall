@@ -20,7 +20,7 @@ $datas=get_position_and_status($zone);
             <div id="id_container_parts" class="container grid Alice">
             <?php if(!empty($datas)):?>
                 <?php foreach($datas as $row):?>
-                    <div class='layer_parts box_parts' onclick=LinkTo_BookingPage("<?php echo $row['POS'] ?>")><?php echo $row['POS'].', 狀態:'.$row['STATUS'];?></div>
+                    <div class='layer_parts box_parts' onclick="LinkTo_BookingPage('<?php echo $row['POS']; ?>')" ><?php echo $row['POS'].', 狀態:'.$row['STATUS'];?></div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <h3>PHP's get_position_and_status() return error!</h3>
