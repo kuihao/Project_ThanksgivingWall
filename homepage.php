@@ -1,5 +1,6 @@
 <?php
 require_once './_php_library/connect.php';
+require_once './_php_library/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -16,7 +17,7 @@ require_once './_php_library/connect.php';
     		<div id="id_container_parts" class="container grid Alice">
 				<?php for($i=0;$i<16;$i++): ?>
 					<?php $zone=chr(ord('A')+$i);?>
-					<div class='layer_parts box_parts' onclick="LinkTo_ChooingPage('<?php echo $zone;?>')" onmouseenter="get_emptyseats(this, '<?php echo $zone;?>')" onmouseleave="set_origin(this, '<?php echo $zone;?>')">
+					<div class='layer_parts box_parts' onclick="LinkTo_ChooingPage('<?php echo $zone;?>')" onmouseenter="get_emptyseats(this, '<?php echo $zone;?>', <?php echo count_status($zone)?>)" onmouseleave="set_origin(this, '<?php echo $zone;?>')">
 						<?php echo "第".$zone."區"; ?>
 					</div>
 				<?php endfor?>
@@ -31,8 +32,8 @@ require_once './_php_library/connect.php';
 		/*活用this可更簡化*/
     }
 
-	function get_emptyseats(x, zone){
-		x.innerHTML='<center>第'+zone+'區<br>還有?空位</center>';
+	function get_emptyseats(x, zone, number_Emptyseat){
+		x.innerHTML='<center>第'+zone+'區<br>還有'+number_Emptyseat+'空位</center>';
 	}
 
 	function set_origin(x, zone){

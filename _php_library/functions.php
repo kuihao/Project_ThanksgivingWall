@@ -18,6 +18,7 @@ function get_status($pos){
 }
 
 /*get the position and status of blocks. status:0=empty,1=occupied,-1=temprary lock*/
+/*Search區碼查找狀態、位置*/
 function get_position_and_status($zone){
   $datas = array();
   $sql = "SELECT POS,STATUS FROM `booking_info` WHERE POS LIKE ('$zone%')";
@@ -88,6 +89,25 @@ $sql = "UPDATE `booking_info` SET `STATUS`=-1 WHERE `POS`='$pos'";
 function form_echo_check( $var ){
   if(!empty($_SESSION[$var]))
   return $_SESSION[$var];
+}
+
+function count_status($zone){
+  $sql = "SELECT `STATUS` FROM `booking_info` WHERE POS LIKE ('$zone%')";
+  $rst =@mysqli_query($_SESSION['con'], $sql);
+  
+  $count=0;/*計算空位的數量*/
+  
+  if($rst){
+    if(mysqli_num_rows($rst) > 0){ /*mysqli_num_rows($rst)回傳result矩陣的列數量*/
+      
+      while ($one_row = mysqli_fetch_assoc($rst)){ 
+        if($one_row['STATUS']==0)$count++;/*若狀態為0表示是空位，conut+1*/
+      }
+    }
+    mysqli_free_result($rst);
+  }else{echo "{$sql} comes out error".mysqli_error($_SESSION['con']);}
+
+  return $count;
 }
 
 ?>

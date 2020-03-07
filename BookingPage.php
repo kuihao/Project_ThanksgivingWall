@@ -8,12 +8,24 @@ $pos = ($_GET['pos']);
 <html lang="zh-TW">
 <head>
 	<style>
+		*{
+			font-size: 30px;
+		}
 		body{
 			box-sizing: border-box;
 			display:flex;
 			flex-direction: column;
 			align-items: center;
 		}
+		input[type=text], input[type=submit]{
+			width: 100%;
+			padding:10px 10px 10px 10px;
+		}
+		textarea{
+			width: 100%;
+			resize: none;
+		}
+
 		#id_msg01{
 		resize: none;
 		}
@@ -60,20 +72,29 @@ endif;
 		/*此處要回傳block至DB */
 	?>
 
-		<form method="POST" action="<?php echo (htmlspecialchars($_SERVER["PHP_SELF"]))."?pos=$pos";?>">
-			Position:<?php echo $pos; ?>
-			<input type="hidden" id="id_pos" name="n_pos" value="<?php echo $pos; ?>"></input><br>
-			Name:
+		<form method="POST" action="<?php echo (htmlspecialchars($_SERVER["PHP_SELF"]))."?pos=$pos";?>">	
+			位置:<?php echo $pos; ?>
+			<input type="hidden" id="id_pos" name="n_pos" value="<?php echo $pos; ?>"></input><br><br>
+			姓名:
 			<input type="text" id="id_name" name="n_name" value="<?php echo form_echo_check('name') ?>"></input><br>
-			<span class="error"> <?php echo $resultErr1;?></span>
-			PhoneNumber:
+			<span class="error"> <?php echo $resultErr1;?></span><br>
+			性別：
+			<input type="text" id="id_gender" name="n_gender" value="<?php echo form_echo_check('gender') ?>"></input><br>
+			<span class="error"></span><br>
+			手機號碼:
 			<input type="text" id="id_pnum" name="n_pnum" value="<?php echo form_echo_check('telphone_number') ?>"></input><br>
-			<span class="error"> <?php echo $resultErr2;?></span>
-			Message:<br>
+			<span class="error"> <?php echo $resultErr2;?></span><br>
+			Email：
+			<input type="text" id="id_email" name="n_email" value="<?php echo form_echo_check('gender') ?>"></input><br>
+			<span class="error"></span><br>
+			Line ID:
+			<input type="text" id="id_lineid" name="n_lineid" value="<?php echo form_echo_check('gender') ?>"></input><br>
+			<span class="error"></span><br>
+			請說說你的故事或任何想法:<br>
 			<textarea id="id_msg" name="n_msg" cols="30" rows="5" value="<?php echo form_echo_check('message') ?>"></textarea><br>
 			<input type="submit" value="訂位"></input>
 		</form>
-		<input type ="button" onclick="history.back()" value="回到上一頁"></input>	
+		<!--input type ="button" onclick="history.back()" value="回到上一頁"></input-->	
 	<?php else: header('location: ChoosingPage.php');?>
 	<?php endif;?>
 </body>
