@@ -16,7 +16,7 @@ require_once './_php_library/connect.php';
     		<div id="id_container_parts" class="container grid Alice">
 				<?php for($i=0;$i<16;$i++): ?>
 					<?php $zone=chr(ord('A')+$i);?>
-					<div class='layer_parts box_parts' onclick="LinkTo_ChooingPage('<?php echo $zone;?>')" onmousemove="get_emptyseats(this, '<?php echo $zone;?>')" onmouseleave="set_origin(this, '<?php echo $zone;?>')">
+					<div class='layer_parts box_parts' onclick="LinkTo_ChooingPage('<?php echo $zone;?>')" onmouseenter="get_emptyseats(this, '<?php echo $zone;?>')" onmouseleave="set_origin(this, '<?php echo $zone;?>')">
 						<?php echo "第".$zone."區"; ?>
 					</div>
 				<?php endfor?>

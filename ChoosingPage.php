@@ -20,7 +20,15 @@ $datas=get_position_and_status($zone);
             <div id="id_container_parts" class="container grid Alice">
             <?php if(!empty($datas)):?>
                 <?php foreach($datas as $row):?>
-                    <div class='layer_parts box_parts' onclick="LinkTo_BookingPage('<?php echo $row['POS']; ?>')" ><?php echo $row['POS'].', 狀態:'.$row['STATUS'];?></div>
+                    <?php if($row['STATUS']==0): ?>
+                        <div class='layer_parts box_parts' onclick="LinkTo_BookingPage('<?php echo $row['POS']; ?>')" onmouseenter="show_state(this, '<?php echo $row['STATUS']; ?>', '<?php echo $row['POS']; ?>')" onmouseleave="set_origin(this ,'<?php echo $row['POS']; ?>')">
+                            <?php echo $row['POS']; ?>
+                        </div>
+                    <?php elseif($row['STATUS']==1): ?>
+                        <div class='layer_parts box_parts lock' onmouseenter="show_state(this, '<?php echo $row['STATUS']; ?>', '<?php echo $row['POS']; ?>')" onmouseleave="set_origin(this ,'<?php echo $row['POS']; ?>')"><?php echo $row['POS']; ?></div>
+                    <?php elseif($row['STATUS']==-1):?>
+                        <div class='layer_parts box_parts lock' onmouseenter="show_state(this, '<?php echo $row['STATUS']; ?>', '<?php echo $row['POS']; ?>')" onmouseleave="set_origin(this ,'<?php echo $row['POS']; ?>')"><?php echo $row['POS']; ?></div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php else: ?>
                 <h3>PHP's get_position_and_status() return error!</h3>
@@ -33,6 +41,27 @@ $datas=get_position_and_status($zone);
 <script>
     function LinkTo_BookingPage(pos) {
         window.location.href = 'BookingPage.php?pos='+pos;
+    }
+
+    function show_state(x, status, pos){
+        switch(status){
+            case '0':
+                x.innerHTML='<center>'+pos+':空位<br>可以選取</center>';
+                break;
+            case '1':
+                x.innerHTML='<center>'+pos+':已被劃記<br>請考慮其他的位置</center>';
+                break;
+            case '-1':
+                x.innerHTML='<center>'+pos+':正被選取<br>請考慮其他的位置</center>';
+                break;
+            default:
+                x.innerHTML='<center>'+pos+'<br>Something wrong!</center>';
+        }
+
+    }
+
+    function set_origin(x, pos){
+        x.innerHTML=pos;
     }
 </script>
 <?php mysqli_close($_SESSION['con']); ?>

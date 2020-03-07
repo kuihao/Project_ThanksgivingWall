@@ -141,7 +141,7 @@ body {
     }
 
     .box_parts:hover{
-        background:rgba(255,0,0,50%);
+        background:rgba(0,255,0,50%);
     }
 
 .HIDE{

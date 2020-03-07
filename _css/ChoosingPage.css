@@ -93,8 +93,9 @@ body {
         "c c c c"
         "c c c c"
         "c c c c"
-        "c c c c"
+        "c c c c";
         /*grid-template-columns:minmax(300px,1fr) 1fr 1fr 1fr;*//*RWD應用*/
+        /*font-size: 30px;*/
     }
 
     /*--------以下為grid網格內的區塊顯示---------*/
@@ -126,6 +127,7 @@ body {
         /*#text*/
         color: white;
         font-size: 30px;
+        /*font-size: 0.9em;*/
         /* Alignment Text only*/
         display: flex;
         justify-content: center;
@@ -141,9 +143,15 @@ body {
     }
 
     .box_parts:hover{
-        background:rgba(255,0,0,50%);
+        background:rgba(0,255,0,50%);
+        font-size: 0.9em;
     }
 
+    .lock:hover{
+        /*seize*/
+        background:rgba(255,0,0,50%);
+        font-size: 0.9em;
+    }
 .HIDE{
     display: none;
 }
@@ -160,7 +168,7 @@ body {
   background-size: contain;*/
 
 /*手機板RWD設定：可以設定畫面<=600px 背景圖片換成小解析度*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     body {
         /*overflow:scroll;*/
         justify-content: start;
@@ -169,14 +177,37 @@ body {
         /*!!!考慮到圖片、按鈕是否會太小*/
         min-width: 200px;
     }
+    .box_parts:hover{
+        font-size: 0.7em;
+    }
+    .lock:hover{
+        /*seize*/
+        font-size: 0.7em;
+    }
+    
 }
+
 @media only screen and (max-width: 400px) {
     .grid>.box_parts {
         font-size: 20px;
+    }
+    .box_parts:hover{
+        font-size: 90%;
+    }
+    .lock:hover{
+        /*seize*/
+        font-size: 90%;
     }
 }
 @media only screen and (max-width: 300px) {
     .grid>.box_parts {
         font-size: 15px;
+    }
+    .box_parts:hover{
+        font-size: 0.7em;
+    }
+    .lock:hover{
+        /*seize*/
+        font-size: 0.7em;
     }
 }
