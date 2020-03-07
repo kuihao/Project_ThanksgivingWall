@@ -35,7 +35,7 @@ $datas=get_position_and_status($zone);
 			<?php endif; ?> 
             </div>
         </div>
-        <input type="button" onclick="history.back()" value="回到上一頁"></input>
+        <input type="button" onclick="location.href='HomePage.php'" value="回到上一頁">
 	</body>
 </html>
 <script>

@@ -86,6 +86,7 @@ function set_statusToblock($pos){
 $sql = "UPDATE `booking_info` SET `STATUS`=-1 WHERE `POS`='$pos'";
 }
 
+/*這有問題 防止表單重複提交機制要更動*/
 function form_echo_check( $var ){
   if(!empty($_SESSION[$var]))
   return $_SESSION[$var];
@@ -108,6 +109,24 @@ function count_status($zone){
   }else{echo "{$sql} comes out error".mysqli_error($_SESSION['con']);}
 
   return $count;
+}
+
+/*表單驗證之用，防止使用者特殊輸入*/
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+ }
+
+/*update DB*/
+function set_info(){
+
+}
+
+/*位置正在被選取，將資料庫位置狀態設為-1*/
+function set_statue_block(){
+
 }
 
 ?>
