@@ -61,10 +61,10 @@ if (isset($_POST['submit'])) {
 		<input disabled type="text" id="id_name" name="n_name" value="<?php  ?>"><br>
 
 		<span class="formtitle">*性別：</span><br>
-		<label><input disabled type="radio" checked id="id_gender" name="n_gender" value="男">男</label>
-		<label><input disabled type="radio" id="id_gender" name="n_gender" value="女">女</label>
-		<label><input disabled type="radio" id="id_gender" name="n_gender" value="其他">其他</label>
-		<label><input disabled type="radio" id="id_gender" name="n_gender" value="不公開">不公開</label><br>
+		<label><input disabled type="radio" checked id="id_gender" name="n_gender" value="Male">男</label>
+		<label><input disabled type="radio" id="id_gender" name="n_gender" value="Female">女</label>
+		<label><input disabled type="radio" id="id_gender" name="n_gender" value="Other">其他</label>
+		<label><input disabled type="radio" id="id_gender" name="n_gender" value="Secret">不公開</label><br>
 
 		<span class="formtitle">*手機號碼:</span><br>
 		<input disabled type="text" id="id_pnum" name="n_pnum" value="<?php  ?>"><br>

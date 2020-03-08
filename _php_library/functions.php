@@ -113,9 +113,9 @@ function count_status($zone){
 
 /*表單驗證之用，防止使用者特殊輸入*/
 function test_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
+	$data = trim($data);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
+	$data = stripslashes($data);/*删除用户输入数据中的反斜杠（\）*/
+	$data = htmlspecialchars($data);/*轉換HTML標籤語法*/
 	return $data;
  }
 
