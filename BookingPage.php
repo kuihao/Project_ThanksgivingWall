@@ -38,6 +38,10 @@ require_once './_php_library/functions.php';
 			width:100%;
 			background-color: #CDCDEE;
 		}
+
+		.TITLE{
+		    font-size: 30px;
+		}
 	</style>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"):
 	endif;
 
 	if(!empty($_POST["n_note"])):
-	$f_note = $_POST["n_note"];/*test_input($_POST["n_note"]);*/
+	$f_note = test_input($_POST["n_note"]);/*$_POST["n_note"];*/
 	$_SESSION['note'] = $f_note;
 	endif;
 
@@ -118,7 +122,7 @@ endif;
 	<?php
 		/*此處要回傳block至DB */
 	?>
-
+    <span class="TITLE">感恩牆>填寫劃位資料</span><br>
 		<form method="POST" action="<?php echo (htmlspecialchars($_SERVER["PHP_SELF"]))."?pos=$pos";?>">	
 			<center><span class="formtitle">位置:<?php echo $pos; ?></span></center>
 			<input type="hidden" id="id_pos" name="n_pos" value="<?php echo $pos; ?>">
@@ -129,8 +133,9 @@ endif;
 			<input type="text" id="id_name" name="n_name" value="<?php echo $f_name;?>"><br>
 			<span class="error"> <?php echo $Err_name;?></span><br>
 			
-			<?php foreach($n_gender as $value):?>
-				<?php switch($value){
+			<?php $rd_Male = $rd_Female = $rd_Other = $rd_Secret = "";?>
+			<?php if($f_gender):?>
+				<?php switch($f_gender){
 				 case 'Male':
 					$rd_Male='checked'; break;
 				 case 'Female':
@@ -145,7 +150,7 @@ endif;
 					$rd_Other='';
 					$rd_Secret='';
 				 }?>
-			<?php endforeach;?>
+			<?php endif;?>
 			<span class="formtitle">*性別：</span><br>
 			<label><input type="radio" <?php echo $rd_Male;?> id="id_gender" name="n_gender" value="Male">男</label>
 			<label><input type="radio" <?php echo $rd_Female;?> id="id_gender" name="n_gender" value="Female">女</label>
@@ -165,6 +170,8 @@ endif;
 			<input type="text" id="id_lineid" name="n_lineid" value="<?php echo $f_lineid;?>"><br>
 			<span class="error"><?php echo $Err_lineid;?></span><br>
 			
+			<?php $cb_email = 'checked'; $cb_line = $cb_pmsg ="";?>
+			<?php if($f_note):?>
 			<?php foreach($f_note as $value):?>
 				<?php switch($value){
 				 case 'email':
@@ -175,20 +182,19 @@ endif;
 					$cb_pmsg='checked'; break;
 				 default:
 					$cb_email='checked';
-					$cb_line='';/*此處危險 因為是多選*/
-					$cb_pmsg='';
 				 }?>
 			<?php endforeach;?>
+			<?php endif; ?>
 			<span class="formtitle">*提醒通知方式:</span><br>
-			<label><input type="checkbox" <?php echo $cb_email;?> disabled id="id_note" name="n_note[]" value="email">Email</label>
-			<label><input type="checkbox" <?php echo $cb_line; ?>id="n_note" name="n_note[]" value="LINE">LINE</label>
-			<label><input type="checkbox" <?php echo $cb_pmsg; ?>id="n_note" name="n_note[]" value="phonemessage">手機簡訊</label><br>
-
-			<span class="formtitle">*活動前多少天提醒我:</span><br>
+			<label><input disabled type="checkbox" <?php echo $cb_email;?> id="id_note" name="n_note[]" value="email">Email</label>
+			<label><input type="checkbox" <?php echo $cb_line; ?> id="n_note" name="n_note[]" value="LINE">LINE</label>
+			<label><input type="checkbox" <?php echo $cb_pmsg; ?> id="n_note" name="n_note[]" value="phonemessage">手機簡訊</label><br>
+			
+			<span class="formtitle">*請於活動前幾天再次提醒我:</span><br>
 			<input type="date" id="id_notedate" name="n_notedate" value="<?php echo $f_note;?>"><br>
 			
-			<span class="formtitle">說你的故事或任何想法:</span><br>
-			<textarea id="id_msg" name="n_msg" cols="30" rows="5" value="<?php echo $f_msg;?>"></textarea><br>
+			<span class="formtitle">說說你的故事或任何想法:</span><br>
+			<textarea id="id_msg" name="n_msg" cols="30" rows="5"><?php echo $f_msg;?></textarea><br>
 			
 			<input type="submit" value="訂位">
 		</form>
@@ -197,3 +203,4 @@ endif;
 </body>
 </html>
 <?php mysqli_close($_SESSION['con']); ?>
+<?php /*可以把value的f_var換成session試試，這樣修改資料時，資料會還在，但要處理新區塊清空session的問題*/?>

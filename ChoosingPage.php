@@ -14,6 +14,7 @@ $datas=get_position_and_status($zone);
 		<title>感恩牆劃位系統>選擇位置</title>
 	</head>
 	<body>
+    <span class="TITLE">感恩牆劃位系統>選擇位置</span><br>
         <div id="id_container_picture" class="container grid Bob">
             <img class="layer_picture box_picture" src="./_files/canvas/test_breakfast_part_<?php echo $zone;?>.jpg"
                 alt=" This is a painting picture.">

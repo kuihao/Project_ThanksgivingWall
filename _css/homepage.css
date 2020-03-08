@@ -16,6 +16,10 @@ body {
     z-index: 1;*/
 }
 
+.TITLE{
+    font-size: 30px;
+}
+
 .picture_frame{
     width: inherit;
     height: inherit;

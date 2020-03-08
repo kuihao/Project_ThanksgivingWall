@@ -12,6 +12,7 @@ require_once './_php_library/functions.php';
 		<title>感恩牆劃位系統</title>
 	</head>
 	<body>
+	<span class="TITLE">感恩牆劃位系統</span><br>
 		<div id="id_container_picture" class="container grid Bob">
     		<img class="layer_picture box_picture" src="./_files/canvas/test_breakfast.jpg" alt=" This is a painting picture.">
     		<div id="id_container_parts" class="container grid Alice">

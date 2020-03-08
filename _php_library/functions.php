@@ -82,7 +82,8 @@ function get_article($id)
 }
 
 /*狀態更新：占用(STATUS=-1)*/
-function set_statusToblock($pos){
+/*位置正在被選取，將資料庫位置狀態設為-1*/
+function edit_statusToblock($pos){
 $sql = "UPDATE `booking_info` SET `STATUS`=-1 WHERE `POS`='$pos'";
 }
 
@@ -113,20 +114,59 @@ function count_status($zone){
 
 /*表單驗證之用，防止使用者特殊輸入*/
 function test_input($data) {
-	$data = trim($data);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
-	$data = stripslashes($data);/*删除用户输入数据中的反斜杠（\）*/
-	$data = htmlspecialchars($data);/*轉換HTML標籤語法*/
+  if( is_array($data)){
+    foreach($data as $key => $value){
+      $value = trim($value);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
+      $value = htmlspecialchars($value);/*轉換HTML標籤語法*/
+      $value = stripslashes($value);/*删除用户输入数据中的反斜杠（\）*/
+      $data[$key] = $value;
+    }
+  }else{
+    $data = trim($data);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
+    $data = stripslashes($data);/*删除用户输入数据中的反斜杠（\）*/
+    $data = htmlspecialchars($data);/*轉換HTML標籤語法*/
+  }
+
 	return $data;
  }
 
-/*update DB*/
-function set_info(){
-
+function table_gender($data){
+  $word="";
+  switch($data){
+    case 'Male':
+      $word = '男';
+      break;
+    case 'Female':
+      $word = '女';
+      break;
+    case 'Other':
+      $word = '其他';  
+      break;
+    case 'Secret':
+      $word = '不公開';
+      break;
+    default:
+      $word = '存取錯誤';
+  }
+  return $word;
 }
 
-/*位置正在被選取，將資料庫位置狀態設為-1*/
-function set_statue_block(){
-
+function table_note($datas){
+  $word="";
+  foreach($datas as $onedata)
+  switch($onedata){
+    case 'email':
+      $word = $word.'Email ';
+      break;
+    case 'LINE':
+      $word = $word.'LINE ';
+      break;
+    case 'phonemessage':
+      $word = $word.'手機簡訊 ';  
+      break;
+    default:
+      $word = '存取錯誤';
+  }
+  return $word;
 }
-
 ?>
