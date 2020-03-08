@@ -186,7 +186,7 @@ endif;
 			<?php endforeach;?>
 			<?php endif; ?>
 			<span class="formtitle">*提醒通知方式:</span><br>
-			<label><input disabled type="checkbox" <?php echo $cb_email;?> id="id_note" name="n_note[]" value="email">Email</label>
+			<label><input disabled checked type="checkbox" <?php echo $cb_email;?> id="id_note" name="n_note[]" value="email">Email</label>
 			<label><input type="checkbox" <?php echo $cb_line; ?> id="n_note" name="n_note[]" value="LINE">LINE</label>
 			<label><input type="checkbox" <?php echo $cb_pmsg; ?> id="n_note" name="n_note[]" value="phonemessage">手機簡訊</label><br>
 			
