@@ -53,7 +53,7 @@ require_once './_php_library/functions.php';
 
 /*定義變數並設定為空值*/
 $f_pos = $f_name = $f_gender = $phone_number = $f_email = $f_lineid = $f_note = $f_notedate = $f_msg = "";
-$Err_name = $Err_gender = $Err_telphone = $Err_email = $Err_lineid = "";
+$Err_name = $Err_gender = $Err_telphone = $Err_email = $Err_lineid = $Err_notedate = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"):
 	$f_pos = test_input($_POST["n_pos"]);
@@ -106,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"):
 	if(!empty($_POST["n_notedate"])):
 	$f_notedate = test_input($_POST["n_notedate"]);/*$_POST["n_notedate"];*/
 	$_SESSION['notedate'] = $f_notedate;
+	else:
+	$Err_notedate = "請選擇再次通知的日期";
 	endif;
 
 	$f_msg = test_input($_POST["n_msg"]);
@@ -186,12 +188,13 @@ endif;
 			<?php endforeach;?>
 			<?php endif; ?>
 			<span class="formtitle">*提醒通知方式:</span><br>
-			<label><input disabled checked type="checkbox" <?php echo $cb_email;?> id="id_note" name="n_note[]" value="email">Email</label>
+			<label><input type="checkbox" <?php echo $cb_email;?> id="id_note" name="n_note[]" value="email">Email</label>
 			<label><input type="checkbox" <?php echo $cb_line; ?> id="n_note" name="n_note[]" value="LINE">LINE</label>
 			<label><input type="checkbox" <?php echo $cb_pmsg; ?> id="n_note" name="n_note[]" value="phonemessage">手機簡訊</label><br>
 			
 			<span class="formtitle">*請於活動前幾天再次提醒我:</span><br>
 			<input type="date" id="id_notedate" name="n_notedate" value="<?php echo $f_note;?>"><br>
+			<span class="error"><?php echo $Err_notedate;?></span><br>
 			
 			<span class="formtitle">說說你的故事或任何想法:</span><br>
 			<textarea id="id_msg" name="n_msg" cols="30" rows="5"><?php echo $f_msg;?></textarea><br>

@@ -121,7 +121,7 @@ if (isset($_POST['submit'])) {
 		<span class="formtitle">*請於活動前幾天再次提醒我:</span><br>
 		<input disabled type="date" id="id_notedate" name="n_notedate" value="<?php  echo $_SESSION['notedate'];?>"><br>
 
-		<span class="formtitle">說你的故事或任何想法:</span><br>
+		<span class="formtitle">說說你的故事或任何想法:</span><br>
 		<textarea disabled id="id_msg" name="n_msg" cols="30" rows="5"><?php  echo $_SESSION['msg'];?></textarea><br>
 
 		<input type="submit" value="確認資料無誤，送出">
