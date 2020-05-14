@@ -758,19 +758,3 @@ function twentytwenty_get_elements_array() {
 	*/
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
-
-/*-----------------------------------*
-* 以下為東華學生Kuihao自製的PHP API
-*-----------------------------------*/
-/**
- * 這是用來引入Homepage的JS檔案
- *
- * 
- *
- * 
- */
-function enqueue_my_custom_script() {
-    wp_enqueue_script( 'my-custom-js', 'http://127.0.0.1/***', false );
-}
-
-add_action( 'wp_enqueue_scripts', 'enqueue_my_custom_script' );
