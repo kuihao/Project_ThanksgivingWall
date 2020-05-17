@@ -2,34 +2,6 @@
 <div id="id_container_picture" class="container grid Bob">
 	<img class="layer_picture box_picture" src="http://127.0.0.1/wp-content/uploads/2020/05/test_breakfast.jpg" alt=" This is a painting picture.">
 	<div id="id_container_parts" class="container grid Alice">
-		<?php for($i=0;$i<16;$i++): ?>
-			<?php $zone=chr(ord('A')+$i);?>
-			<div class='layer_parts box_parts' 
-			onclick="LinkTo_ChooingPage('<?php echo $zone;?>')" 
-			onmouseenter="get_emptyseats(this, '<?php echo $zone;?>', <?php echo count_status($zone)?>)" 
-			onmouseleave="set_origin(this, '<?php echo $zone;?>')">
-				<?php echo "第".$zone."區"; ?>
-			</div>
-		<?php endfor?>
-	</div>
-</div>
-
-<?php 
-for($i=0;$i<16;$i++){
-	$zone=chr(ord('A')+$i);
-	echo "<div class=\'layer_parts box_parts\' 
-	onclick=\"LinkTo_ChooingPage(\'$zone\')\" 
-	onmouseenter=\"get_emptyseats(this, \'$zone\', ".echo count_status($zone);.")\" 
-	onmouseleave=\"set_origin(this, \'$zone>\')\">
-	第$zone區
-	</div>"
-}
-?>
-
-<span class="TITLE">感恩牆劃位系統</span><br>
-<div id="id_container_picture" class="container grid Bob">
-	<img class="layer_picture box_picture" src="http://127.0.0.1/wp-content/uploads/2020/05/test_breakfast.jpg" alt=" This is a painting picture.">
-	<div id="id_container_parts" class="container grid Alice">
 		[xyz-ips snippet="ViewCanvasBlock"]
 	</div>
 </div>
