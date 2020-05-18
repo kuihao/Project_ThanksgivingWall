@@ -1,0 +1,16 @@
+/**
+ * Gravity Form
+ */
+.acfe-gravity-form-align-default,
+.acfe-gravity-form-align-left,
+.acfe-gravity-form-btn-align-left {
+  text-align: left;
+}
+.acfe-gravity-form-align-right,
+.acfe-gravity-form-btn-align-right {
+  text-align: right;
+}
+.acfe-gravity-form-align-center,
+.acfe-gravity-form-btn-align-center {
+  text-align: center;
+}
