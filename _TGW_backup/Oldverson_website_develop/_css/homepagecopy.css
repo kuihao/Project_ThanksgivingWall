@@ -1,0 +1,181 @@
+/*首頁選區*/
+
+* {
+    padding: 0;
+    /*-*/margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display:flex;
+    /*justify-content: center;*/
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    /*position: relative;
+    z-index: 1;*/
+}
+
+.TITLE{
+    font-size: 30px;
+}
+
+.picture_frame{
+    width: inherit;
+    height: inherit;
+}
+
+.Bob{
+    position: relative;
+}
+
+.Alice{
+    /*-transition: .5s ease;*/
+    /*opacity: 0;*/
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); */
+    /*display: flex;*/
+    /*似乎height即可*/
+    min-height: 100%;
+    /*min-width: 100%;*/
+    /*mbackground-color:#4CAF50;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    z-index: 2;
+}
+
+.Bob:hover .box_picture {
+    opacity: 0.8;
+  }
+  
+.Bob:hover .Alice {
+    /*opacity: 1;*/
+  }
+
+#id_container_picture{
+    background-color: black;
+}
+
+  /*layer是指圖層，下層是底圖(picture)，上層是點選區塊(parts)*/
+.layer_picture{
+    /*position:initial;
+    position: absolute;*/
+    
+}
+
+.layer_parts{
+    /*position:initial;
+    position: absolute;
+    z-index: 1;*/
+    /*width: inherit;
+    height: inherit;*/
+    /* z-index: 3; */
+}
+
+/*Grid排版容器*/
+.container {
+    /* max-width: 800px; */
+    /*-80*/
+    width: 100%;/*控制grid Frame寬度*/
+    /* min-width:601px; */
+    /* margin:0 0;auto會使頁寬大於content時，多的部分歸至margin */
+    border: 1px solid blue;
+}
+
+    /*設定grid網格行列數*/
+    .grid {
+        display: grid;
+        /*grid-template-rows: 200px minmax(100px, max-content);*/
+        /*grid-template-rows: 200px repeat(2,minmax(100px, max-content));*/
+        /*grid-template-rows: repeat(2, 200px);*/
+        grid-template-rows: repeat(4, 1fr);/*fr means 'fraction'*/
+        grid-template-columns: repeat(4, 1fr); 
+        grid-gap:0;
+        /* grid-template-areas:
+        "c c c c"
+        "c c c c"
+        "c c c c"
+        "c c c c" */
+        /*grid-template-columns:minmax(300px,1fr) 1fr 1fr 1fr;*//*RWD應用*/
+    }
+
+    /*--------以下為grid網格內的區塊顯示---------*/
+    .grid>.box_picture{
+        grid-area: c;
+        /*grid-row: 1 / 3;
+        grid-column: 1 / 3;*/
+        /*grid-area:1 / 1 / 3 / 3 ;*/
+        /*width:100%*/
+        max-width: 100%;
+
+        /*display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap:0;*/
+
+        /*轉場效果*/
+        /*-opacity: 1;*/
+        /*display: block;*/
+        width: 100%;
+        /*-*/height: auto;
+        /*-transition: .5s ease;*/
+        backface-visibility: hidden;
+        /* z-index: 1; */
+    }
+    
+    .grid>.box_parts {
+        /*父層grid二維排版；子層文字用Flexbox一維排版*/
+        /*background: rgba(0, 0, 0, 30%);*/
+        border: 1px solid white;
+        /*#text*/
+        color: white;
+        font-size: 30px;
+        /* Alignment Text only*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*grid-area: c;
+        grid-row: 1 / 4;
+        grid-column: 1 / 5;*/
+        /*grid-row: 1 / 2;
+        grid-column: 1 / 2;*/
+        /*grid-area:auto/auto/auto/auto ;*/
+        /*event*/
+        cursor: pointer;
+    }
+
+    .box_parts:hover{
+        background:rgba(0,255,0,50%);
+    }
+
+.HIDE{
+    display: none;
+}
+/*background: orangered no-repeat;
+  background-image: url("../_files/image/test_breakfast.jpg");
+  background-size: contain;*/
+
+/*手機板RWD設定：可以設定畫面<=600px 背景圖片換成小解析度*/
+@media only screen and (max-width: 600px) {
+    body {
+        /*overflow:scroll;*/
+        justify-content: start;
+    }
+    .container {
+        /*!!!考慮到圖片、按鈕是否會太小*/
+        min-width: 200px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .grid>.box_parts {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .grid>.box_parts {
+        font-size: 15px;
+    }
+}

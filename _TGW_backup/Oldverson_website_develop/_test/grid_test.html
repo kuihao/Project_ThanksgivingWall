@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GRID TEST</title>
+</head>
+<style>
+    body {
+    /* display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px; */
+}
+.container {
+    width: 100%;
+}
+
+    .canvas_container {
+        position: relative;
+        max-width: 800px;
+        min-width: 250px;
+        width: 100%;
+        /* min-height: 200px; */
+        border: 1px solid blue;
+        background-color: aquamarine;
+    }
+
+    .grid2>.img_Property {
+        width: 100%;
+        height: auto;
+        grid-area: c;
+        z-index: 1;
+    }
+.a{
+    position: absolute;
+    min-height: 100%;
+    z-index: 2;
+    /* top: 0;
+    left: 0; */
+}
+/*--------以下為grid網格設定---------*/
+    .grid_container {
+        width: 100%;
+        /* height: 100%; */
+
+    }
+
+    /*設定grid網格行列數*/
+    .grid {
+        /*顯示方式為grid*/
+        display: grid;
+        /*設定顯示4列*/
+        grid-template-rows: repeat(4, 1fr);
+        /*設定顯示4行*/
+        grid-template-columns: repeat(4, 1fr);
+        /*設定網格的間距*/
+        grid-gap: 0;
+        grid-template-areas:
+        "a0 a1 a2 a3"
+        "a4 a5 a6 a7"
+        "a8 a9 a10 a11"
+        "a12 a13 a14 a15"
+    }
+
+    .grid2 {
+        /*顯示方式為grid*/
+        display: grid;
+        /*設定顯示4列*/
+        grid-template-rows: repeat(4, 1fr);
+        /*設定顯示4行*/
+        grid-template-columns: repeat(4, 1fr);
+        /*設定網格的間距*/
+        grid-gap: 0;
+        grid-template-areas:
+        "c c c c"
+        "c c c c"
+        "c c c c"
+        "c c c c"
+    }
+
+    .grid>.canvas_block {
+        /*顯示方式為flex, flex很適合做文字排版, 建議用在底層區塊*/
+        display: flex;
+        /*flex專屬-主軸的對齊(main axis): 置中*/
+        justify-content: center;
+        /*flex專屬-交叉軸(cross axis): 置中*/
+        align-items: center;
+        border: 1px solid white;
+        color: black;
+        z-index: 3;
+    }
+
+    .canvas_block:hover {
+        cursor: pointer;
+        background: rgba(0, 255, 0, 50%);
+    }
+
+    /* .seve{
+        絕對位置：父層須為pos:非static、relative為佳
+        position: absolute;
+        top: 0;
+        left: 0;
+        位置轉變
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } */
+</style>
+
+<body>
+    <div class="container canvas_container grid2">
+        <img id="id_img" class="img_Property" 
+            src="./_files/canvas/test_breakfast.jpg"
+            alt=" This is a painting picture.">
+        <div id="id_grid_container" class="container grid_container a">
+            <div id="id_grid" class="grid2">
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    function div_generate() {
+        var i, s = '';
+        for (i = 0; i < 16; i++) {
+            // s += "<div class=\"canvas_block\" style=\"grid-area: a"+i+";\" >" + i + "</div>";
+            s += "<div class=\"canvas_block\">" + i + "</div>";
+        }
+        document.getElementById('id_grid').innerHTML = s;
+    }
+    div_generate();
+</script>
+
+</html>
