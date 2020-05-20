@@ -7,9 +7,10 @@
 **期程：** 2~4月學習php、css純手工從底層基礎開發->5月中，使用wordpress框架整合所有功能，提升網頁日後延展性、可維護性、資安防護性  
 **開發困難：** 前期花費不少時間學習與開發grid、表單session、phpmailerToGmail，中後期由於新冠肺炎病毒(corona,COVID-19)疫情影響，專案被迫停擺，
 後續由於面臨畢業而無法繼續參與計畫，因此將開發內容整合進wordpress框架，方便下位接手的網頁開發者繼續完成這項溫暖助人的計畫。
-
+  
 **使用的程式語言：**html, javascript(ajax, jQuery), php(session), css(grid, flex, bootstrap)  
-**使用的工具/技術:**XAMPP(server: Apache, mysql, php), phpmailer(),
+**使用的工具/技術:**XAMPP(server: Apache, mysql, php), phpmailer()  
+  
 *網站主要功能有(以下皆參考教學原生開發)：人性化的訂位面板(不同於平凡的演唱會座位訂位系統，有實際的圖片、直觀的選擇、良好點擊的回饋)、  表單(填寫再次確認、檢查資料輸入、遺漏必填警告)、表單寄送至資料庫、表單寄確認信至email*
 *後續將持續新增：訂位填寫表單的block機制、利用session優化每個頁面的訪問權限、RWD更好的grid panel*
 

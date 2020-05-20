@@ -11,3 +11,14 @@ function get_emptyseats(x, zone, number_Emptyseat){
 function set_origin(x, zone){
     x.innerHTML='第'+zone+'區';
 }
+
+/*產生欲嵌入id="id_grid_container"的可點選方格*/
+function grid_item_generate() {
+    var i, s = '';
+    /*i可控制要顯示多少個格子*/
+    for (i = 0; i < 16; i++) {
+        s += "<div class=\"grid_item\">" + i + "</div>";
+    }
+    document.getElementById('id_grid_container').innerHTML = s;
+}
+grid_item_generate();

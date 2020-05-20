@@ -1,110 +1,60 @@
-/*首頁選區*/
-.picture_frame{
-    width: inherit;
-    height: inherit;
-}
-
-.Bob{
+/*整個物件的最外層容器*/
+.canvas_container{
+    /*位置設為relative可被子層的absolute屬性區塊定位*/
     position: relative;
+    /*自定義的RWD設定*/
+    /* max-width: 800px;
+    min-width:601px; */
+    /*依wordpress模板設定*/
+    width: 100%;
+    /*畫框邊線*/
+    border: 1px solid black;
 }
 
-.Alice{
+/*圖片的屬性設定*/
+.img_Property{
+    /*<img>做到RWD縮放的必要設定*/
+    width: 100%;
+    height: auto;
+}
+
+/*設定Grid格線框架*/
+.grid_container{
+    /*位置設為absolute，便會將上層區塊的左上角作為參考點，作出相對位置的改變*/
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    /*寬度設100%永遠填滿這個框架
+    "最小高度100%"是本物件會成功的重點，由於位置設為absolute，它會參考父層當前實際的高度作為自己的最低高度*/
+    width: 100%;
     min-height: 100%;
-    z-index: 2;
+    /*將layout模組設為grid(格線框架)：會自動將子層區塊照自定義設定值排列*/
+    display: grid;
+    /*目前排列規則設為：4列，1fr代表全部的分割比例皆為1:1，W3Cschool會有更多這部分的變形教學*/
+    grid-template-rows: repeat(4, 1fr);
+    /*目前排列規則設為：4行*/
+    grid-template-columns: repeat(4, 1fr); 
+    /*間隔：目前設為0，表示無間隔*/
+    grid-gap:0;
 }
 
-.Bob:hover .box_picture {
-    opacity: 0.8;
-  }
-  
-
-#id_container_picture{
-    background-color: black;
+/*設定grid框架內的實際的方格*/
+.grid_item{
+    /*flex是目前最優的文字排版設定，適合用在最底層*/
+    display: flex;
+    /*文字區塊xy軸都置中排列*/
+    justify-content: center;
+    align-items: center;
+    /*文字屬性*/
+    border: 1px solid white;
+    /*格線顏色*/
+    color: white;
 }
 
-  /*layer是指圖層，下層是底圖(picture)，上層是點選區塊(parts)*/
-.layer_picture{
-    z-index: 1;
-}
-
-.layer_parts{
-    z-index: 3;
-}
-
-/*Grid排版容器*/
-.container {
-    max-width: 800px;
-    width: 100%;控制grid Frame寬度
-    min-width:601px;
-    margin:0 0;auto會使頁寬大於content時，多的部分歸至margin
-    border: 1px solid blue;
-}
-    /*GRID目前的狀況：格子的實體是包在內容的多個div(grid box)，目前boxes無法正確顯示在frame當中，
-    所以改用區塊重疊的方式強制將其覆蓋到父區塊上，也就是Alice類別，當中使用了Abslute跟index-z這會造成觸發時可能跑版
-    要設法指套用一次grid*/
-    /*設定grid網格行列數*/
-    .grid {
-        display: grid;
-        grid-template-rows: repeat(4, 1fr);/*fr means 'fraction'*/
-        grid-template-columns: repeat(4, 1fr); 
-        grid-gap:0;
-        grid-template-areas:
-        "c c c c"
-        "c c c c"
-        "c c c c"
-        "c c c c"
-    }
-
-    /*--------以下為grid網格內的區塊顯示---------*/
-    .grid>.box_picture{
-        grid-area: c;
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-        backface-visibility: hidden;
-    }
-    
-    .grid>.box_parts {
-        /*父層grid二維排版；子層文字用Flexbox一維排版*/
-        border: 1px solid white;
-        color: white;
-        font-size: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .box_parts:hover{
-        background:rgba(0,255,0,50%);
-    }
-
-.HIDE{
-    display: none;
-}
-
-/*手機板RWD設定：可以設定畫面<=600px 背景圖片換成小解析度*/
-@media only screen and (max-width: 600px) {
-    /*body {
-        justify-content: start;
-    }*/
-    .container {
-        /*!!!考慮到圖片、按鈕是否會太小*/
-        min-width: 200px;
-    }
-}
-@media only screen and (max-width: 400px) {
-    .grid>.box_parts {
-        font-size: 20px;
-    }
-}
-@media only screen and (max-width: 300px) {
-    .grid>.box_parts {
-        font-size: 15px;
-    }
+/*hover表示滑鼠移置此區塊上方之後的狀態*/
+.grid_item:hover{
+    /*滑鼠呈現手指圖案*/
+    cursor: pointer;
+    /*方格顏色轉變的顏色*/
+    background:rgba(0,255,0,50%);
 }
