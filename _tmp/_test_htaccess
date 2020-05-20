@@ -1,8 +1,0 @@
-# 2020/02/25
-# reference: https://mnya.tw/cc/word/1400.html
-# 為了資安，開發者一般不會希望使用者知道自己使用的後端語言，為了簡短，開發者一般都希望網站網址越短越好，
-# 因此，在網址列就沒有必要去顯示副檔名了！PHP 寫出來的檔案應該會是「.php」，
-# 如何將它移除只留檔名呢？只要在伺服器根目錄擺放「.htaccess」，並在當中加入以下原始碼：
-Options +FollowSymlinks
-RewriteEngine on
-RewriteRule ^([^./]+)/?$ $1.php [L]

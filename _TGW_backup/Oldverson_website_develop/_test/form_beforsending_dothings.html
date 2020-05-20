@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form name="form1" method="post" action="http://www.o-asp.com" onSubmit="return CheckForm();">
+
+    <input type="text" name="text">
+    
+    <input type="submit" name="submit" value="送出">
+    
+    </form>
+</body>
+<script language="Javascript"> 
+function CheckForm()
+{
+  if(confirm("確認要送出本表單嗎？")==true)   
+
+    return true;
+
+  else  
+
+    return false;
+}   
+</script>   
+</html>
+
