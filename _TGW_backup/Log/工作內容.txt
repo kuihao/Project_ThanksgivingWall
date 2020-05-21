@@ -1,0 +1,6 @@
+()gird 生產改用php 最好弄個view群
+()路徑function
+()後臺資料庫管理外掛
+()改寫model連新資料庫
+()狀態判定改時間
+()每一頁要有session

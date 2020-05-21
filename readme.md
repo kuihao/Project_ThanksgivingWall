@@ -5,7 +5,7 @@
 同時網頁也具備信件通知、行動裝置行事曆app新增活動提醒的功能，及時提醒創作者提早訂購車票前往活動場地。  
 **Highlight：** 具備同演唱會/電影院的訂位功能+表單寄信提醒功能+同台鐵訂票行事曆動提醒功能  
 **期程：** 2~4月學習php、css純手工從底層基礎開發->5月中，使用wordpress框架整合所有功能，提升網頁日後延展性、可維護性、資安防護性  
-**開發困難：** 前期花費不少時間學習與開發grid、表單session、phpmailerToGmail，中後期由於新冠肺炎病毒(corona,COVID-19)疫情影響，專案被迫停擺，
+**開發困難：** 前期花費不少時間學習與開發grid、表單session、phpmailerToGmail，中後期由於新冠肺炎病毒(corona,COVID-19)疫情影響，專案暫時停擺，
 後續由於面臨畢業而無法繼續參與計畫，因此將開發內容整合進wordpress框架，方便下位接手的網頁開發者繼續完成這項溫暖助人的計畫。
   
 **使用的程式語言：**html, javascript(ajax, jQuery), php(session), css(grid, flex, bootstrap)  
