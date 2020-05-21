@@ -58,3 +58,29 @@
     /*方格顏色轉變的顏色*/
     background:rgba(0,255,0,50%);
 }
+
+/*RWD響應式設定: 配合WP的Elwmentor*/
+/*手機螢幕*/
+@media (max-width: 360px) {
+    .grid_item{
+        font-size: 1em;
+    }
+}
+/*平板螢幕*/
+@media (min-width: 361px) and (max-width: 768px) {
+    .grid_item{
+        font-size: 2em;
+    }
+}
+/*電腦螢幕*/
+@media (min-width: 769px) and (max-width: 899px) {
+    .grid_item{
+        font-size: 2em;
+    }
+}
+/*更大的電腦螢幕*/
+@media (min-width: 900px) {
+    .grid_item{
+        font-size: 2em;
+    }
+}
