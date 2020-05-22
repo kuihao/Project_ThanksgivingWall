@@ -1,7 +1,7 @@
 /*當格子被點選後，連結至報名表單頁(注意若更改頁面名稱後，此網址也要更換)*/
 function LinkTo_BookingPage(pos) {
     /*此連結使用HTTP GET require傳送參數，請保留?pos='+pos*/
-    window.location.href = 'BookingPage.php?pos='+pos;
+    window.location.href = 'http://127.0.0.1/%e5%8a%83%e4%bd%8d%e8%b3%87%e6%96%99%e8%a1%a8%e5%96%ae/?pos='+pos;
 }
 
 /*依據DB回傳之位置狀態的不同，給予不同的顯示調整*/

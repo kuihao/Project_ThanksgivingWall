@@ -2,11 +2,19 @@
 (FE)路徑function(只能用絕對路徑，目前無解，wp自己可以rewrite，但不能把路徑寫死在php裡，wp似乎無法代換)
 (BE)gird 生產改用php 最好弄個view群
 --------------------------------------
-(製作選擇頁至表單頁：(1)http get抓取表單應顯示的位置(可參考舊表單)(2)離開時啟用session[ChoosepageToFormpage])
-
+http get抓取表單應顯示的位置(可參考舊表單)
+表單可以默認現在的位置並正確傳disabled欄位資料
+找到外掛表單ajax安插的方法
+位表單新增送出錢的確認框
+--------------------------------------
 (BE)狀態判定改時間
+**get_status要改成T/F(查到錯誤也要回傳F)
+**也許需要拆開get_status和get_pos
 (FEtoBE)改寫model連新資料庫(只要改設定狀態改成時間insert,其他判定狀態要改)
+
+(製作選擇頁至表單頁：(2)若非法進來要先查狀態OK就給session[ChoosepageToFormpage])
 (BE)每一頁要有session(剩下表單頁 及 恭喜頁；
 	(1)選擇頁 至 表單頁
 	(2)表單頁需要用ajax技術，當submit按下時，onSubmit進fun(){ajax;return True;})
 	(3)表單頁 至 恭喜頁
+
