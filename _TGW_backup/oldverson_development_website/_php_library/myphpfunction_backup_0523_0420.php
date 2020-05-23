@@ -177,4 +177,95 @@ add_action('wp_dashboard_setup','TGW_dashboard_widgets');
 // 		}
 // 	}
 // }
+
+/*------------------old function following--------------------*/
+/*這有問題 防止表單重複提交機制要更動*/
+// function form_echo_check( $var ){
+//   if(!empty($_SESSION[$var]))
+//   return $_SESSION[$var];
+// }
+
+/*表單驗證之用，防止使用者特殊輸入*/
+// function test_input($data) {
+//   if( is_array($data)){
+//     foreach($data as $key => $value){
+//       $value = trim($value);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
+//       $value = htmlspecialchars($value);/*轉換HTML標籤語法*/
+//       $value = stripslashes($value);/*删除用户输入数据中的反斜杠（\）*/
+//       $data[$key] = $value;
+//     }
+//   }else{
+//     $data = trim($data);/*去除用户输入数据中不必要的字符（多余的空格、制表符、换行）*/
+//     $data = stripslashes($data);/*删除用户输入数据中的反斜杠（\）*/
+//     $data = htmlspecialchars($data);/*轉換HTML標籤語法*/
+//   }
+// 	return $data;
+//  }
+
+/*用於表單性別*/
+// function table_gender($data){
+//   $word="";
+//   switch($data){
+//     case 'Male':
+//       $word = '男';
+//       break;
+//     case 'Female':
+//       $word = '女';
+//       break;
+//     case 'Other':
+//       $word = '其他';  
+//       break;
+//     case 'Secret':
+//       $word = '不公開';
+//       break;
+//     default:
+//       $word = '存取錯誤';
+//   }
+//   return $word;
+// }
+
+/*用於表單提醒方式*/
+// function table_note($datas){
+//   $word="";
+//   foreach($datas as $onedata)
+//   switch($onedata){
+//     case 'email':
+//       $word = $word.'Email ';
+//       break;
+//     case 'LINE':
+//       $word = $word.'LINE ';
+//       break;
+//     case 'phonemessage':
+//       $word = $word.'手機簡訊 ';  
+//       break;
+//     default:
+//       $word = '存取錯誤';
+//   }
+//   return $word;
+// }
+
+/*測試php server, 成功會回傳雙引號及單引號的特性*/
+// function K_testing(){
+//     $test_var=100;
+//     echo "Double quotes: $test_var<br>";
+//     echo 'Apostrophe: $test_var';
+// }
+
+/*測試mysql+php server, 成功會回傳資料庫中流水號為1的位置資料*/
+// function DB_testing(){
+//   /*--data裝DB回傳資料--*/
+//   $data=0;
+//   /*--$sql存欲操作DB的SQL操作指令(現行官方用語叫query)--*/
+//   $sql = "SELECT `POS` FROM `booking_info` WHERE SER = '1'";
+//   /*--mysqli_query()執行傳入的SQL指令，回傳SQL分類結果陣列，其他指令回傳True--*/
+//   $rst =@mysqli_query($_SESSION['con'], $sql);
+//   if($rst){
+//     $data=mysqli_fetch_assoc($rst);/*讀取陣列資料：mysqli_fetch_assoc($rst)是以欄位名稱作為索引標籤，並回傳矩陣*/
+//     print_r($rst);
+//     echo '<br>';
+//     print_r($data);
+//   }else{echo "{$sql} comes out error".mysqli_error($_SESSION['con']);}
+//   mysqli_free_result($rst);
+//   return $data['POS'];
+// }
 ?>
