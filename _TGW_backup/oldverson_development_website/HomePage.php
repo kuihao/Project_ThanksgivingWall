@@ -75,10 +75,18 @@ require_once './_php_library/functions.php';
 <body>
 	<div class="canvas_container">
         <img class="img_Property" 
-            src="./_files/canvas/test_breakfast.jpg"
+            src="http://127.0.0.1/wp-content/uploads/2020/05/test_breakfast.jpg"
             alt=" This is a painting picture.">
         <div id="id_grid_container" class="grid_container">
 			<!--此處用js:grid_item_generate()嵌入畫布的顯示方塊-->
+			<?php for($i=0;$i<16;$i++): ?>
+			<?php $zone=chr(ord('A')+$i);?>
+			<div class='grid_item' onclick="LinkTo_ChooingPage('<?php echo $zone;?>')"
+				onmouseenter="get_emptyseats(this, '<?php echo $zone;?>', <?php echo count_status($zone)?>)"
+				onmouseleave="set_origin(this, '<?php echo $zone;?>')">
+				<?php echo "第".$zone."區"; ?>
+			</div>
+			<?php endfor?>
 		</div>
     </div>
 
@@ -125,6 +133,6 @@ require_once './_php_library/functions.php';
         }
         document.getElementById('id_grid_container').innerHTML = s;
     }
-    grid_item_generate();
+    //grid_item_generate();
 </script>
 <?php mysqli_close($_SESSION['con']); ?>

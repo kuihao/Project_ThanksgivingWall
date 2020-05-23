@@ -1,6 +1,62 @@
 <?php
-/*連線至TGW資料庫(目前是連至bookingDB)(啟用session以使用php全域session變數)*/
+/*(啟用session以使用php全域session變數)*/
 @session_start();
+
+/*連線至mysql管理系統中的wpdb資料庫(wpdb是存放Wordpress網站資料的資料庫)*/
+$_SESSION['con']=@mysqli_connect("127.0.0.1", "root", "", "wpdb") or die("NO");
+if($_SESSION['con']){mysqli_query($_SESSION['con'], "SET NAMES utf8");}
+else{echo '無法連線mysql資料庫 :<br/>' . mysqli_connect_error();}
+
+/*=================== My functions ===========================*/
+/*
+**  函式名稱：get_status($pos)
+**  [用途：查詢位置是否許可]
+**  輸入: 畫布區塊的位置編號(String)...例如查詢單筆:'A-01' 或 查詢多筆:'A'
+**  回傳: 位置的狀態(True/ False)...True表示空位(允許)/ False表示已有登記(禁止)或正在被報名(鎖定)
+**  程式要點： 資料庫會回傳時間字串，用時間來判斷此位置的狀態為何
+**          (1)time=2222/1/1 00:00:00，(設定為100年後)表示此位置已被登記->False
+**          (2)time>現在時間，表示此位置正在被報名->False
+**          (3)time<現在時間，表示此位置是空位->True
+*/
+function get_status($pos){
+  /*--資料庫搜尋--*/
+      /*$array_DB_return用來接收含有回傳的time資料*/
+      $array_DB_return = array();
+
+      /*$sql是SQL操作指令*/
+      $sql = "SELECT STATUS FROM `booking_info` WHERE POS LIKE ('$pos%')";
+      /*mysqli_query()執行SQL操作，select指令會回傳SQL分類結果陣列，其他指令回傳True*/
+      $rst =@mysqli_query($_SESSION['con'], $sql);
+      if($rst){
+        /*mysqli_num_rows($rst)回傳result矩陣的列數量*/
+        if(mysqli_num_rows($rst) > 0){ 
+          /*讀取陣列資料：mysqli_fetch_assoc($rst)是以欄位名稱作為索引標籤，並回傳矩陣*/
+          for($i = 0; $row= mysqli_fetch_assoc($rst); $i++){
+            $array_DB_return[] = $row;
+            /*判斷該位置紀錄的時間 是否小於 當前時間*/
+            if( strtotime($array_DB_return[$i]['STATUS']) < strtotime(date("Y-m-d H:i:s")) ){
+              /*在$array_DB_return[$i]後面push一個node[permit]，用來記錄允許與否*/
+              $array_DB_return[$i] += [ "permit" => True];
+            }else{
+              $array_DB_return[$i] += [ "permit" => False];             
+            }
+          }
+        }
+        mysqli_free_result($rst);
+      }else{echo "{$sql} comes out error".mysqli_error($_SESSION['con']);}
+      // echo "(Debug) *count:* ".count($array_DB_return)."<br>";
+      // echo "(Debug) *print_r:* ";print_r($array_DB_return);echo "<br>";
+
+  /*回傳資料*/
+  if($i < 2){
+    return $array_DB_return[0]['permit'];/*單筆資料搜索值接回傳字串*/
+  }else{
+    return $array_DB_return;/*多筆資料搜索回傳陣列型態*/
+  }
+}
+
+/*------------------old fun following--------------------*/
+/*連線至TGW資料庫(目前是連至bookingDB)*/
 $_SESSION['con']=@mysqli_connect("127.0.0.1", "root", "", "booking") or die("NO");
 if($_SESSION['con']){mysqli_query($_SESSION['con'], "SET NAMES utf8");}
 else{echo '無法連線mysql資料庫 :<br/>' . mysqli_connect_error();}
@@ -33,8 +89,6 @@ function TGW_dashboard_help(){
 }
 add_action('wp_dashboard_setup','TGW_dashboard_widgets');
 
-/*@session_start();*/
-
 /*(需要connection/session)輸入畫布位置、資料庫回傳位置的狀態(允許、禁止、鎖定)*/
 function get_status($pos){
   $data=0;
@@ -42,8 +96,9 @@ function get_status($pos){
   $sql = "SELECT STATUS FROM `booking_info` WHERE POS LIKE ('$pos')";
   /*--mysqli_query()執行SQL操作，select指令會回傳SQL分類結果陣列，其他指令回傳True--*/
   $rst =@mysqli_query($_SESSION['con'], $sql);
+
   if($rst){
-    $data=mysqli_fetch_assoc($rst);/*讀取陣列資料：mysqli_fetch_assoc($rst)是以欄位名稱作為索引標籤，並回傳矩陣*/
+    $data=mysqli_fetch_assoc($rst);
     //print_r($rst);
     //echo '<br>';
     //print_r($data);
@@ -211,5 +266,7 @@ function DB_testing(){
   mysqli_free_result($rst);
   return $data['POS'];
 }
+
+
 
 ?>
