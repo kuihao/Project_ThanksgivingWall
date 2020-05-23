@@ -15,13 +15,16 @@
 **  函式名稱：get_status_permition($pos)
 **  [用途：查詢位置是否許可]
 **  輸入: 畫布區塊的位置編號(String)...例如查詢單筆:'A-01' 或 查詢多筆:'A'
-**  回傳: 位置的狀態(True/ False)...True表示空位(允許)/ False表示已有登記(禁止)或正在被報名(鎖定)
+**  回傳: 位置的狀態(integer)...1表示空位(允許)/ -1表示已有登記(禁止)/ 0正在被報名(鎖定)
 **  程式要點： 資料庫會回傳時間字串，用時間來判斷此位置的狀態為何
-**          (1)time=2222/1/1 00:00:00，(設定為100年後)表示此位置已被登記->False
-**          (2)time>現在時間，表示此位置正在被報名->False
-**          (3)time<現在時間，表示此位置是空位->True
+**          (1)time=2222/1/1 00:00:00，(設定為100年後)表示此位置已被登記-> -1
+**          (2)time>現在時間，表示此位置正在被報名-> 0
+**          (3)time<現在時間，表示此位置是空位-> 1
 */
 function get_status_permition($pos){
+  /*校正時間*/
+  date_default_timezone_set("Asia/Taipei");
+
   /*--資料庫搜尋--*/
   /*$array_DB_return用來接收含有回傳的time資料*/
   $array_DB_return = array();
@@ -35,12 +38,16 @@ function get_status_permition($pos){
       /*讀取陣列資料：mysqli_fetch_assoc($rst)是以欄位名稱作為索引標籤，並回傳矩陣*/
       for($i = 0; $row= mysqli_fetch_assoc($rst); $i++){
         $array_DB_return[] = $row;
-        /*判斷該位置紀錄的時間 是否小於 當前時間*/
-        if( strtotime($array_DB_return[$i]['STATUS']) < strtotime(date("Y-m-d H:i:s")) ){
-          /*在$array_DB_return[$i]後面push一個node[permit]，用來記錄允許與否*/
-          $array_DB_return[$i] += [ "permit" => True];
+        /*判斷該位置紀錄的時間 與 當前時間的關係*/
+        if( strtotime($array_DB_return[$i]['STATUS']) == strtotime("2222-01-01 00:00:00") ){
+          /*等於永久時間表示位置已被登記，permit設為-1，永不可到達之意*/
+          $array_DB_return[$i] += [ "permit" => -1];
+        }elseif( strtotime($array_DB_return[$i]['STATUS']) > strtotime(date("Y-m-d H:i:s")) ){
+          /*大於當前時間表示位置正在被選取，permit設為0*/
+          $array_DB_return[$i] += [ "permit" => 0];   
         }else{
-          $array_DB_return[$i] += [ "permit" => False];             
+          /*根據三一律，小於當前時間表示位置是空位，可以被報名登記，permit設為1*/
+          $array_DB_return[$i] += [ "permit" => 1];
         }
       }
     }
@@ -107,7 +114,7 @@ function set_status_blocking($pos, $addMinute){
  */
 function get_status_permition_count($zone){
   /*根據位置區碼，搜尋資料庫小於目前時間的資料，並回傳其數量(陣列形式)*/
-  $sql = "SELECT COUNT(`SER`) FROM `booking_info` WHERE `POS` LIKE 'A%' AND `STATUS`<CURRENT_TIMESTAMP ";
+  $sql = "SELECT COUNT(`SER`) FROM `booking_info` WHERE `POS` LIKE '$zone%' AND `STATUS`<CURRENT_TIMESTAMP ";
   $result  =@mysqli_query($_SESSION['con'], $sql);
   if($result){
     if(mysqli_num_rows($result) > 0){ /*function mysqli_num_rows($result)回傳result矩陣的列數量*/
@@ -177,4 +184,10 @@ add_action('wp_dashboard_setup','TGW_dashboard_widgets');
 // 		}
 // 	}
 // }
+
+/**
+ * 更新日期：2020/05/23 連接新資料庫、優化SQL搜尋、
+ *                     降低函式的耦合性(Coupling)、大幅提高內聚性(Cohesion)、
+ *                     新增WP風格的註解
+ */
 ?>

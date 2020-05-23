@@ -6,20 +6,19 @@ function LinkTo_BookingPage(pos) {
 
 /*依據DB回傳之位置狀態的不同，給予不同的顯示調整*/
 function show_state(x, status, pos){
-    switch(status){
-        case '0':
-            x.innerHTML='<center>'+pos+':空位<br></center>';
-            break;
+    switch (status) {
         case '1':
-            x.innerHTML='<center>'+pos+':已被劃記<br></center>';
+            x.innerHTML = '<center>' + pos + ':空位</center>';
             break;
         case '-1':
-            x.innerHTML='<center>'+pos+':正被選取<br></center>';
+            x.innerHTML = '<center>' + pos + ':已被劃記</center>';
+            break;
+        case '0':
+            x.innerHTML = '<center>' + pos + ':被報名中</center>';
             break;
         default:
-            x.innerHTML='<center>'+pos+'<br>Something wrong!</center>';
+            x.innerHTML = '<center>' + pos + '<br>Something wrong!</center>';
     }
-
 }
 
 /*當滑鼠離開格子之後，讓顯示恢復原設定*/

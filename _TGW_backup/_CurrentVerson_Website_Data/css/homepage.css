@@ -49,6 +49,7 @@
     border: 1px solid white;
     /*格線顏色*/
     color: white;
+    font-size: 5vw;
 }
 
 /*hover表示滑鼠移置此區塊上方之後的狀態*/
@@ -57,30 +58,34 @@
     cursor: pointer;
     /*方格顏色轉變的顏色*/
     background:rgba(0,255,0,50%);
+    font-size: 4vw;
 }
 
 /*RWD響應式設定: 配合WP的Elwmentor*/
 /*手機螢幕*/
-@media (max-width: 360px) {
+/* @media (max-width: 360px) {
     .grid_item{
         font-size: 1em;
     }
-}
+} */
 /*平板螢幕*/
-@media (min-width: 361px) and (max-width: 768px) {
+/* @media (min-width: 361px) and (max-width: 768px) {
     .grid_item{
         font-size: 2em;
     }
-}
+} */
 /*電腦螢幕*/
-@media (min-width: 769px) and (max-width: 899px) {
+/* @media (min-width: 769px) and (max-width: 899px) {
     .grid_item{
         font-size: 2em;
     }
-}
+} */
 /*更大的電腦螢幕*/
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
     .grid_item{
-        font-size: 2em;
+        font-size: 30px;
     }
+	.grid_item:hover{
+		font-size: 30px;
+	}
 }

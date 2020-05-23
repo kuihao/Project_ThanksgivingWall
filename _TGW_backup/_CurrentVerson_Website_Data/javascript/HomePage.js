@@ -8,7 +8,7 @@ function LinkTo_ChooingPage(zone){
 
 /*顯示目前格子代表的區域內還有多少空位*/
 function get_emptyseats(x, zone, number_Emptyseat){
-    x.innerHTML='<center>第'+zone+'區<br>還有'+number_Emptyseat+'空位</center>';
+    x.innerHTML='<center>第'+zone+'區<br>'+number_Emptyseat+'空位</center>';
 }
 
 /*當滑鼠離開格子之後，讓顯示恢復原設定*/
