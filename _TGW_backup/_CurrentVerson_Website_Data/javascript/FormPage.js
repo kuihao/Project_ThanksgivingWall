@@ -59,7 +59,9 @@ function CheckForm() {
 /*當表單送出之後、寄信之前，將cf7ajax的資料紀錄於brownser console*/
 document.addEventListener('wpcf7submit', function (event) {
   if (event.detail.contactFormId == '242') {
+    /*這裡呼叫AJAX function*/
     console.log(event.detail);
     alert(document.getElementById("id_form_name").value);
   }
 }, false);
+

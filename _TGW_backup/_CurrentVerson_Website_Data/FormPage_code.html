@@ -1,0 +1,23 @@
+<label style="visibility:hidden"> 位置
+    [text position id:id_FormPage_position]</label>
+
+<label> 姓名 (必填)
+    [text* form_name id:id_form_name]</label>
+
+<label> 性別 (必填)</label>
+    [radio radio-form-gender label_first default:1 "男" "女" "跨性別" "不公開"]
+
+<label> 手機號碼 (必填)
+   [tel* tel-form-cellphone placeholder "0900-000-000"] </label>
+
+<label> 電子郵件Email (必填)
+   [email* email-form] </label>
+
+<label> LINE ID
+   [text text-LineID] </label>
+
+<label> 說說您的故事或任何想法
+   [textarea textarea-msg] </label>
+
+<p id="id_FormPage_addmsg"></p>
+<input id="id_FormPage_submit_bt" type="submit" value="sent" class="wpcf7-form-control wpcf7-submit" onclick="CheckForm()">

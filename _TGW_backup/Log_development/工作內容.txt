@@ -12,12 +12,14 @@ http get抓取表單應顯示的位置(可參考舊表單)
 把片段回去 用universal
 行事曆小工具
 --------------------------------------
-
---------------------------------------
 (BE)每一頁要有session(剩下表單頁 及 恭喜頁；
-	(1)選擇頁 至 表單頁
-	(2)表單頁需要用ajax技術，當submit按下時，onSubmit進fun(){ajax;return True;}) /若非法進來要先查狀態OK就給session[FormPage_Certificate])
-	(3)表單頁 至 恭喜頁
+(1)選擇頁 至 表單頁
+(2)表單頁:若非法進來要先查狀態OK就給session[FormPage_Certificate])
+--------------------------------------
+
+	
+	(2)表單頁需要用ajax技術，當submit按下時，onSubmit進fun(){ajax;return True;})
+	(3)表_Po單頁 至 恭喜頁
 
 
 

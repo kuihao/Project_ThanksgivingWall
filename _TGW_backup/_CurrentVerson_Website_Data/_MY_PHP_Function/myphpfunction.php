@@ -127,6 +127,18 @@ function get_status_permition_count($zone){
   return $count['COUNT(`SER`)'];
 }
 
+/**count_status()
+ * 函式名稱：set_status_booked($pos)
+ * [用途：用於表單傳送之後，將位置狀態更新為已被劃記]
+ * 輸入:$pos 位置編碼(string)
+ * 回傳:無
+ * 程式要點：已被劃記的狀態是效期為2222-01-01 00:00:00
+ */
+function set_status_booked($pos){
+  $sql ="UPDATE `booking_info` SET `STATUS`= '2222-01-01 00:00:00' WHERE `POS`='$pos'";
+  $rst=@mysqli_query($_SESSION['con'], $sql);
+}
+
 /**
  * (選擇性的功能)
  * [用途：客製化後端控制台的訊息框]
