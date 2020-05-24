@@ -5,7 +5,7 @@ require_once './../_MY_PHP_Function/myphpfunction.php';
 $ResiveMsg =  $_POST['position'];
 echo $ResiveMsg."<br>";
 
-set_status_booked($ResiveMsg);
+set_status_unlosk($ResiveMsg);
 
 echo "DB update OK";
 // print_r($ResiveMsg);

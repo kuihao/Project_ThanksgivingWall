@@ -1,23 +1,26 @@
 <label style="visibility:hidden"> 位置
-    [text position id:id_FormPage_position]</label>
+  [text position id:id_FormPage_position]</label>
 
 <label> 姓名 (必填)
-    [text* form_name id:id_form_name]</label>
+  [text* form_name id:id_form_name]</label>
 
 <label> 性別 (必填)</label>
-    [radio radio-form-gender label_first default:1 "男" "女" "跨性別" "不公開"]
+  [radio radio-form-gender label_first default:1 "男" "女" "跨性別" "不公開"]
 
 <label> 手機號碼 (必填)
-   [tel* tel-form-cellphone placeholder "0900-000-000"] </label>
+ [tel* tel-form-cellphone placeholder "0900-000-000"] </label>
 
 <label> 電子郵件Email (必填)
-   [email* email-form] </label>
+ [email* your-email] </label>
 
 <label> LINE ID
-   [text text-LineID] </label>
+ [text text-LineID] </label>
 
 <label> 說說您的故事或任何想法
-   [textarea textarea-msg] </label>
+[textarea your-message] </label>
 
 <p id="id_FormPage_addmsg"></p>
-<input id="id_FormPage_submit_bt" type="submit" value="sent" class="wpcf7-form-control wpcf7-submit" onclick="CheckForm()">
+<!--這裡使用React技術，先隱藏真按鈕，讓使用者去點假按鈕，就能獲得等待時間，達到間隔觸發事件-->
+ <input type="button" id="id_FormPage_trigger_bt" value="sent">
+<label style="visibility:hidden">
+ <input id="id_FormPage_submit_bt" type="submit" value="sent" class="wpcf7-form-control wpcf7-submit"></label>

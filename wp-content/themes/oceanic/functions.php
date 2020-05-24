@@ -501,19 +501,3 @@ function oceanic_load_admin_style($hook) {
    wp_enqueue_style( 'oceanic-upgrade-css', get_template_directory_uri() . '/upgrade/css/freelancelot-admin.css' );
 }    
 add_action( 'admin_enqueue_scripts', 'oceanic_load_admin_style' );
-
-/*測試Ajax 送什麼來送什麼回去*/
-function k_test_action() {
-    $postData = $_POST['d'];
-        /*dothings*/
-        $K_con=@mysqli_connect("127.0.0.1", "root", "", "test") or die("NO");
-        if($K_con){mysqli_query($K_con, "SET NAMES utf8");}
-        else{echo '無法連線mysql資料庫 :<br/>' . mysqli_connect_error();}
-        $sql ="INSERT INTO `testtable`(`NUMBER`) VALUES (1)";
-        $rst=@mysqli_query($K_con,$sql);
-
-    //wp_send_json($postData);
-    //wp_die();
-}
-add_action('wp_ajax_k_test_action', 'k_test_action');
-add_action('wp_ajax_nopriv_k_test_action', 'k_test_action');

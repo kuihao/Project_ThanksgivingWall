@@ -1,6 +1,5 @@
 /*由於表單外掛Contact Forms 7的設計方式，這個Javascript必須要引入在footer底下，和其他的snippets用法不同*/
 
-
 /*判定為編輯模式時，變更表單的事件*/
 function AdminMode() {
   /*以表單中的id_FormPage_addmsg標籤定址，便可找到表單元素(Form element)*/
@@ -56,12 +55,20 @@ function CheckForm() {
     return false;
 }
 
-/*當表單送出之後、寄信之前，將cf7ajax的資料紀錄於brownser console*/
-document.addEventListener('wpcf7submit', function (event) {
+
+var flag;
+  $("#id_FormPage_trigger_bt").click(function(){
+  	flag = CheckForm();
+  	if(flag){
+    	$("#id_FormPage_submit_bt").click();
+    }
+  });
+
+/*當表單送出之後、寄信之前，對DB更新欄位的效期，更多API可查詢Contact Form 7: DOM events*/
+document.addEventListener('wpcf7mailsent', function (event) {
   if (event.detail.contactFormId == '242') {
-    /*這裡呼叫AJAX function*/
-    console.log(event.detail);
-    alert(document.getElementById("id_form_name").value);
+    /*更新DB的位置效期(設為已劃位)*/
+    JS_call_jQuery();
   }
 }, false);
 

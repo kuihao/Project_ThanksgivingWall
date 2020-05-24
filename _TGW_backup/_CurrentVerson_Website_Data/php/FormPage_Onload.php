@@ -24,7 +24,7 @@ if(empty($_SESSION['Administrator'])){
     /*若GET是空值 或 將位置回傳DB查詢為False(此位置狀態為禁止或封鎖)，則將頁面導向"位置發生意外"的通知頁面*/
     if( empty($_SESSION['position']) || !(get_status_permition($_SESSION['position'])=='1') ){
         /*載入JS並跳址(因為WP本身對php轉址有衝突，官方尚未修復)*/
-        echo "<script>window.location.href = \"http://127.0.0.1/%e4%bd%8d%e7%bd%ae%e7%99%bc%e7%94%9f%e6%84%8f%e5%a4%96/\";</script>";
+        echo "<script>window.location.href = \"".site_url()."/%e4%bd%8d%e7%bd%ae%e7%99%bc%e7%94%9f%e6%84%8f%e5%a4%96/\";</script>";
     }else{
         /*若GET有值 且 此位置是空位，則給予可以繼續執行*/
         $_SESSION['FormPage_Certificate'] = true;
@@ -39,8 +39,5 @@ if(empty($_SESSION['Administrator'])){
 }
 
 
-
-
-
-
 /*目前使用到的session: $_SESSION['position'/ Administrator/ FormPage_Certificate]*/
+?>

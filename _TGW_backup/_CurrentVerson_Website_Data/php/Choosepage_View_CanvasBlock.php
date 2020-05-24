@@ -1,5 +1,5 @@
 <img class="img_Property"
-    src="http://127.0.0.1/wp-content/uploads/2020/05/test_breakfast_part_<?php echo $_SESSION['zone'];?>.jpg"
+    src="<?php echo site_url()."/wp-content/uploads/2020/05/test_breakfast_part_".$_SESSION['zone'].".jpg";?>"
     alt=" This is a painting picture.">
 <div id="id_grid_container" class="grid_container">
     <?php if(!empty($_SESSION['positions'])):?>

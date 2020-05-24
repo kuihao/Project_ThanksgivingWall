@@ -64,7 +64,7 @@ function get_status_permition($pos){
   }
 }
 
-/*get_position_and_status
+/*
 **  函式名稱：get_position($zone)
 **  [用途：查詢該分區中所有的位置編號]
 **  輸入: 畫布區塊的區碼編號(String)...例如'A'
@@ -88,7 +88,7 @@ function get_position($zone){
   return $datas;
 }
 
-/**edit_statusToblock
+/**
  * 函式名稱：set_status_blocking($pos, $addMinute)
  * [用途：當使用者進入填寫表單頁面，要將該位置設為"鎖定"，因為報名過程中要防止其他人Overbooking]
  * 輸入:$pos位置編號、$addMinute要暫時鎖定多少分鐘
@@ -106,7 +106,7 @@ function set_status_blocking($pos, $addMinute){
   $rst=@mysqli_query($_SESSION['con'], $sql);
 }
 
-/**count_status()
+/**
  * 函式名稱：get_status_permition_count($zone)
  * [用途：目前用於首頁畫面，計算每個區有尚有多少個空位]
  * 輸入:$zone 區域編碼(string)
@@ -127,7 +127,7 @@ function get_status_permition_count($zone){
   return $count['COUNT(`SER`)'];
 }
 
-/**count_status()
+/**
  * 函式名稱：set_status_booked($pos)
  * [用途：用於表單傳送之後，將位置狀態更新為已被劃記]
  * 輸入:$pos 位置編碼(string)
@@ -136,6 +136,20 @@ function get_status_permition_count($zone){
  */
 function set_status_booked($pos){
   $sql ="UPDATE `booking_info` SET `STATUS`= '2222-01-01 00:00:00' WHERE `POS`='$pos'";
+  $rst=@mysqli_query($_SESSION['con'], $sql);
+}
+
+/**
+ * 函式名稱：set_status_unlosk($pos)
+ * [用途：管理人員可及時將特定位置解鎖變回空位，]
+ * 輸入:$pos 欲設為空位的位置編號
+ * 回傳:無
+ * 程式要點：將位置狀態設為現在時間，便可立即解鎖
+ */
+function set_status_unlosk($pos){
+  $blockingTime = new datetime();
+  $StringOfTime = $blockingTime->format("Y-m-d H:i:s");
+  $sql = "UPDATE `booking_info` SET `STATUS`= '$StringOfTime' WHERE `POS`='$pos'";
   $rst=@mysqli_query($_SESSION['con'], $sql);
 }
 
