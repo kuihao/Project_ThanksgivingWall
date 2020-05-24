@@ -14,11 +14,9 @@ http get抓取表單應顯示的位置(可參考舊表單)
 --------------------------------------
 
 --------------------------------------
-(製作選擇頁至表單頁：(2)若非法進來要先查狀態OK就給session[ChoosepageToFormpage])
-
 (BE)每一頁要有session(剩下表單頁 及 恭喜頁；
 	(1)選擇頁 至 表單頁
-	(2)表單頁需要用ajax技術，當submit按下時，onSubmit進fun(){ajax;return True;})
+	(2)表單頁需要用ajax技術，當submit按下時，onSubmit進fun(){ajax;return True;}) /若非法進來要先查狀態OK就給session[FormPage_Certificate])
 	(3)表單頁 至 恭喜頁
 
 

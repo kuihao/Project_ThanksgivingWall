@@ -99,10 +99,11 @@ function get_position($zone){
  */
 function set_status_blocking($pos, $addMinute){
   $blockingTime = new datetime();
-  $addTime = 'P0Y0M0DT0H'.(string)$addMinute.'M0S';
+  $addTime = 'P0Y0M0DT0H'."$addMinute".'M0S';
   $blockingTime->add(new DateInterval($addTime));
-  echo $blockingTime->format("Y-m-d H:i:s");
-  $sql = "UPDATE `booking_info` SET `STATUS`= '$blockingTime' WHERE `POS`='$pos'";
+  $StringOfTime = $blockingTime->format("Y-m-d H:i:s");
+  $sql = "UPDATE `booking_info` SET `STATUS`= '$StringOfTime' WHERE `POS`='$pos'";
+  $rst=@mysqli_query($_SESSION['con'], $sql);
 }
 
 /**count_status()
@@ -131,31 +132,31 @@ function get_status_permition_count($zone){
  * [用途：客製化後端控制台的訊息框]
  * 程式要點：直接編寫HTML即可，比對一下控制台的畫面，this is not too difficult to understand.
 */
-function TGW_dashboard_widgets(){
-  global $wp_meta_boxes;
-  wp_add_dashboard_widget('TGW_help_widget',"來自網頁開發者的提醒",'TGW_dashboard_help');
-}
-function TGW_dashboard_help(){
-  echo '<p><b>To whom it may concern:</b></p>
-  <p>若您是一般網頁管理者：Wordpress是一個毋需網頁程式語言能力亦可輕鬆調整網頁介面的開發框架，
-  你可以自動略過任何有關程式碼的部分，透過左邊選單中的Elementor插件功能即可隨心所欲、安全地編輯網頁。</p>
-  <p>若您是程式設計師：由於wordpress(以下簡稱WP)是整合框架，請善用WP所提供完善的API進行一切程式碼的編修，。
-  為了保護程式重要資料，<b>建議勿直接修改WP資料夾</b>內部檔案的程式碼，
-  例如直接修改主題(Theme/tamplate)的程式碼，若此主題的原開發者推出更新版本，可能導致的自定義的程式碼被洗掉。</p>
-  <p>因此若需要自定義任何程式碼(html, Javascript, CSS, php)有以下幾種方式：</p>
-  <p>(1)任何頁面的物件都具備<b>自定義CSS(Additional CSS class)</b>、<b>html修改</b>(Edit as html)</p>
-  <p>(2)若需要全域套用CSS：點選做側欄->外觀->自訂->附加的CSS，此處可以針對整個模板做CSS調整</p>
-  <p>(3)任何你看到可以編寫html語法的地方都可以編寫javascript</p>
-  <p>(4)若想引入自己撰寫的php page(參雜php語法及html語法的檔案)，可以透過外掛插件<b>Insert PHP Code Snippet</b>，
-  該插件允許編寫php檔案，你可以將html語法用echo回傳，最後儲存後你會得到一段中誇號短語法，你可以在頁面加入shortcode物件，並貼上該語法，就能達到嵌入php page的效果</p>
-  <p>(5)若想新增自製的php library，可以使用插件<b>我的自訂功能(my custom functions)</b>此處撰寫的php function或執行的method都會直接反映在網頁上</p>
-  <p><b>目前使用的外掛插件有Elementor(比WP原生的編輯器更佳、易上手的GUI編輯器)、Insert PHP Code Snippet、my custom functions</b></p>
-  <p>若操作上任何疑問，請洽東華大學社參辦(XXXXXXXX)</p>
-  <p>上位網頁開發者：Kuihao(41053A041@gms.ndhu.edu.tw)</p>
-  <p><em>若想更改此段訊息，請於左欄點選Woody snippets，找尋並編輯"my_php_function"，
-  最後搜尋function TGW_dashboard_help()即可編輯這段文字</em></p>';
-}
-add_action('wp_dashboard_setup','TGW_dashboard_widgets');
+// function TGW_dashboard_widgets(){
+//   global $wp_meta_boxes;
+//   wp_add_dashboard_widget('TGW_help_widget',"來自網頁開發者的提醒",'TGW_dashboard_help');
+// }
+// function TGW_dashboard_help(){
+//   echo '<p><b>To whom it may concern:</b></p>
+//   <p>若您是一般網頁管理者：Wordpress是一個毋需網頁程式語言能力亦可輕鬆調整網頁介面的開發框架，
+//   你可以自動略過任何有關程式碼的部分，透過左邊選單中的Elementor插件功能即可隨心所欲、安全地編輯網頁。</p>
+//   <p>若您是程式設計師：由於wordpress(以下簡稱WP)是整合框架，請善用WP所提供完善的API進行一切程式碼的編修，。
+//   為了保護程式重要資料，<b>建議勿直接修改WP資料夾</b>內部檔案的程式碼，
+//   例如直接修改主題(Theme/tamplate)的程式碼，若此主題的原開發者推出更新版本，可能導致的自定義的程式碼被洗掉。</p>
+//   <p>因此若需要自定義任何程式碼(html, Javascript, CSS, php)有以下幾種方式：</p>
+//   <p>(1)任何頁面的物件都具備<b>自定義CSS(Additional CSS class)</b>、<b>html修改</b>(Edit as html)</p>
+//   <p>(2)若需要全域套用CSS：點選做側欄->外觀->自訂->附加的CSS，此處可以針對整個模板做CSS調整</p>
+//   <p>(3)任何你看到可以編寫html語法的地方都可以編寫javascript</p>
+//   <p>(4)若想引入自己撰寫的php page(參雜php語法及html語法的檔案)，可以透過外掛插件<b>Insert PHP Code Snippet</b>，
+//   該插件允許編寫php檔案，你可以將html語法用echo回傳，最後儲存後你會得到一段中誇號短語法，你可以在頁面加入shortcode物件，並貼上該語法，就能達到嵌入php page的效果</p>
+//   <p>(5)若想新增自製的php library，可以使用插件<b>我的自訂功能(my custom functions)</b>此處撰寫的php function或執行的method都會直接反映在網頁上</p>
+//   <p><b>目前使用的外掛插件有Elementor(比WP原生的編輯器更佳、易上手的GUI編輯器)、Insert PHP Code Snippet、my custom functions</b></p>
+//   <p>若操作上任何疑問，請洽東華大學社參辦(XXXXXXXX)</p>
+//   <p>上位網頁開發者：Kuihao(41053A041@gms.ndhu.edu.tw)</p>
+//   <p><em>若想更改此段訊息，請於左欄點選Woody snippets，找尋並編輯"my_php_function"，
+//   最後搜尋function TGW_dashboard_help()即可編輯這段文字</em></p>';
+// }
+// add_action('wp_dashboard_setup','TGW_dashboard_widgets');
 
 /**
  * 函式名稱：set_block($x, $y)
