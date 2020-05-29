@@ -1,3 +1,11 @@
+<?php
+/**
+ * 此檔案為顯示用的PHP(view of choosepage with php)
+ * 畫布圖片於此更換
+ * 產生欲嵌入id="id_grid_container"的可點選方格
+ */
+?>
+
 <img class="img_Property"
     src="<?php echo site_url()."/wp-content/uploads/2020/05/test_breakfast_part_".$_SESSION['zone'].".jpg";?>"
     alt=" This is a painting picture.">

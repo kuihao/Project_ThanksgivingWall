@@ -1,7 +1,11 @@
-/*當格子被點選後，連結至選擇位置頁(注意若更改頁面名稱後，此網址也要更換)*/
+
+/*當格子被點選後，連結至選擇位置頁*/
 function LinkTo_ChooingPage(zone){
+    /*抓取Protocol與Host*/
+    var GetProtocol = window.location.protocol;
+    var GetHost = window.location.host;
     /*此連結使用HTTP GET require傳送參數，請保留?zone='+zone;*/
-    window.location.href = 'http://127.0.0.1/%e6%84%9f%e6%81%a9%e7%89%86%e9%81%b8%e6%93%87%e4%bd%8d%e7%bd%ae%e9%a0%81/?zone='+zone;
+    window.location.href = GetProtocol+GetHost+'/%e6%84%9f%e6%81%a9%e7%89%86%e9%81%b8%e6%93%87%e4%bd%8d%e7%bd%ae%e9%a0%81/?zone='+zone;
     /*此處也可直接用document.getElementById("id").innerHTML="";取得zone，降低程式碼複雜度*/
     /*若活用this可更簡化*/
 }
@@ -15,15 +19,3 @@ function get_emptyseats(x, zone, number_Emptyseat){
 function set_origin(x, zone){
     x.innerHTML='第'+zone+'區';
 }
-
-/*(捨棄)因為WP的防護機制，只好用php來寫
-產生欲嵌入id="id_grid_container"的可點選方格*/
-// function grid_item_generate() {
-//     var i, s = '';
-//     /*i可控制要顯示多少個格子*/
-//     for (i = 0; i < 16; i++) {
-//         s += "<div class=\"grid_item\">" + i + "</div>";
-//     }
-//     document.getElementById('id_grid_container').innerHTML = s;
-// }
-// grid_item_generate();

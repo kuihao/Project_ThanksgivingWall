@@ -38,6 +38,4 @@ if(empty($_SESSION['Administrator'])){
 
 }
 
-
 /*目前使用到的session: $_SESSION['position'/ Administrator/ FormPage_Certificate]*/
-?>

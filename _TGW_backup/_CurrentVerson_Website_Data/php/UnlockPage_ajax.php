@@ -5,12 +5,14 @@
 
 $("#id_unlock_bt").on("click", function () {
         var send_position = document.getElementById("id_searching").value;
+        var send_url = window.location.href;
         if(send_position!=''){
             $.ajax({
                 type: "POST",
-                url: "<?php echo site_url()."/_TGW_backup/_CurrentVerson_Website_Data/php/Unlock_Status.php"; ?>",
+                url: "<?php echo site_url()."/_TGW_backup/_CurrentVerson_Website_Data/AJAX_ServerToClient/Unlock_Status.php"; ?>",
                 data: {
-                    position: send_position
+                    position: send_position,
+                    url: send_url
                 },
                 dataType: 'html' //設定該網頁回應的會是 html 格式
             }).done(function (data) {

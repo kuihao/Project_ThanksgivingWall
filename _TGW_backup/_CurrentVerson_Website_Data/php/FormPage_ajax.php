@@ -6,11 +6,13 @@
 /*當文件準備好*/$(document).on("ready", function(){/*此處可以加入自定義event*/});
 $.AjaxToServer = function() {
     var send_position = "<?php echo $_SESSION['position']; ?>";
+    var send_url = window.location.href;
     $.ajax({
         type: "POST",
-        url: "<?php echo site_url()."/_TGW_backup/_CurrentVerson_Website_Data/php/FormPage_ajax_set_status_booked.php"; ?>",
+        url: "<?php echo site_url()."/_TGW_backup/_CurrentVerson_Website_Data/AJAX_ServerToClient/FormPage_ajax_set_status_booked.php"; ?>",
         data: {
-            position: send_position
+            position: send_position,
+            url: send_url
         },
         dataType: 'html' //設定該網頁回應的會是 html 格式
     }).done(function (data) {
