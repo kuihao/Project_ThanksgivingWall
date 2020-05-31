@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+actor "一般使用者" as client
+
+rectangle 感恩牆劃位系統 {
+    
+    rectangle 前台 {
+      usecase "首頁" as UC1
+      usecase "選擇位置頁" as UC2
+      usecase "報名劃位表單頁" as UC3
+      usecase "恭喜劃位頁" as UC4
+      usecase "添加行事曆頁" as UC5
+      usecase "位置發生意外頁" as EXC
+      
+      note "例外狀況：位置重複報名" as N1
+    }
+
+}
+
+client --> UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 --> UC4
+UC1 --> UC5
+
+UC3 .. N1
+N1 ..> EXC
+EXC --> UC1
+
+@enduml

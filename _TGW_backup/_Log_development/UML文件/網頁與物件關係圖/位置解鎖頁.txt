@@ -1,0 +1,27 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "位置解鎖頁\n((管理員使用)位置解鎖或清除劃記)" as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase "UnlockPage_ajax.php" as FILE1
+    }
+}
+
+rectangle jQuery外部連結 {
+    usecase "https://cdn.staticfile.org/\njquery/1.10.2/jquery.min.js" as FILEJQ
+}
+
+rectangle 伺服器local資料夾\nAJAX_ServerToClient {
+usecase "Unlock_Status.php" as FILE0
+}
+
+PG1 ..> WoodySnippets
+PG1 ..> FILEJQ
+FILE1 ..> FILE0
+
+@enduml

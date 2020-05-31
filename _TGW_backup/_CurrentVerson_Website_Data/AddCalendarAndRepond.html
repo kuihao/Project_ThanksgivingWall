@@ -1,5 +1,4 @@
-<div class="new-cal"></div>
-<div class="new-cal2"></div>
+<div class="new-cal css_button"></div>
 <script>
     var myCalendar = createCalendar({
             options: {
@@ -15,20 +14,7 @@
                 address: '這裡輸入地點',
                 description: '這裡填入活動詳細說明'
             }
-        }),
-        myCalendar2 = createCalendar({
-            options: {
-                class: 'my-class' // Notice how this one does not have a preset ID
-            },
-            data: {
-                title: '這裡填入標題',
-                start: new Date('June 15, 2020 17:00'),
-                duration: 60,
-                address: '這裡輸入地點',
-                description: '這裡填入活動詳細說明'
-            }
         });
 
     document.querySelector('.new-cal').appendChild(myCalendar);
-    document.querySelector('.new-cal2').appendChild(myCalendar2);
 </script>

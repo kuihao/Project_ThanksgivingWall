@@ -1,0 +1,13 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "位置發生意外頁" as PG1
+
+}
+
+usecase "none" as NAN
+
+PG1 ..> NAN
+
+@enduml

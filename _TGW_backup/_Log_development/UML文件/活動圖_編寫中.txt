@@ -1,0 +1,20 @@
+@startuml
+
+(*) --> [XAMPP開啟Apache及MySQL] "系統啟動"
+--> [Wordpress處理連線] "進入wordpress預設首頁"
+--> ===B1程===
+note right: 以下為劃位的流程
+
+if "資料庫" then
+  -->[true] "Some Activity"
+  --> "Another activity"
+  -right-> (*)
+else
+  ->[false] "Something else"
+  -->[Ending process] (*)
+endif
+
+-->[You can put also labels] "進入首頁"
+--> (*)
+
+@enduml

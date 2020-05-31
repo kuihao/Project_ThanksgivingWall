@@ -1,0 +1,19 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "首頁\n(感恩牆: 首頁)" as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase "homepage.css" as FILE1
+      usecase "Homepage_View_CanvasBlock.php" as FILE2
+      usecase "HomePage.js" as FILE3
+    }
+}
+
+PG1 .right.> WoodySnippets
+
+@enduml

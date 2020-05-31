@@ -1,0 +1,37 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "報名劃位表單頁\n(感恩牆: 報名劃位表單)" as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase "FormPage_Onload.php" as FILE1
+      usecase "FormPage_ajax.php" as FILE2
+      usecase "FormPage_js" as FILE3
+      usecase "php_session_destory.php" as FILE4
+    }
+    
+    package ContactForm7 {
+      usecase "感恩牆--人生海海 報名表單" as FILECF7
+    }
+}
+
+rectangle jQuery外部連結 {
+    usecase "https://cdn.staticfile.org/\njquery/1.10.2/jquery.min.js" as FILEJQ
+}
+
+rectangle 伺服器local資料夾\nAJAX_ServerToClient {
+usecase "FormPage_ajax_set_status_booked.php" as FILE0
+}
+
+PG1 ..> WoodySnippets
+PG1 ..> ContactForm7
+PG1 ..> FILEJQ
+FILE2 ..> FILE0
+FILECF7 ..> FILE3
+FILE3 ..> FILE2
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+
+actor "管理人員" as admin
+
+
+rectangle 感恩牆劃位系統 {
+    
+    rectangle 前台 {
+      usecase UC2 as "首頁
+      ==
+      登入"
+    }
+    
+  usecase "登入頁" as UC1_1
+  
+    rectangle 後台 {
+      usecase UC3_1 as "控制台首頁
+      ==
+      左側欄:頁面"
+      usecase "位置解鎖或\n清除劃記頁" as UC3_2
+      usecase "Form Submissions\n(查看報名者資料)" as UC3_3
+      
+    }
+  
+  usecase "登出頁" as UC1_2
+}
+
+admin -right-> UC2
+UC2 -up-> UC1_1
+UC1_1 --> UC3_1
+UC3_1 --> UC3_2
+UC3_1 --> UC3_3
+UC3_1 --> UC1_2
+
+@enduml

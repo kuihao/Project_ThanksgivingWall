@@ -1,0 +1,34 @@
+@startuml
+
+
+actor "使用者\n網站管理員" as client
+
+usecase "瀏覽器" as UC1
+usecase "網頁" as UC2
+
+rectangle 感恩牆劃位系統 {
+    rectangle XAMPP {
+    node node [
+    網頁伺服器
+    ----
+    Apache
+    ....
+    Wordpress
+    ]
+  
+    database DB [
+    資料庫
+    ----
+    MariaDB
+    ....
+    
+    ]
+    }
+}
+
+client -right-> UC1
+UC1 -right-> XAMPP
+XAMPP -right-> UC2
+UC2 -right-> client
+
+@enduml

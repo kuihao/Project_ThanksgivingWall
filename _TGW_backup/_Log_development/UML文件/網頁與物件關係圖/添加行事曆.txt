@@ -1,0 +1,20 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "添加行事曆" as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase "Calendar.js" as FILE1
+      usecase "Calendar.css" as FILE2
+    }
+}
+
+
+PG1 ..> WoodySnippets
+
+
+@enduml

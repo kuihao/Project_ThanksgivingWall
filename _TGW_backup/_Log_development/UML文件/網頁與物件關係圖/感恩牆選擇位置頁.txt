@@ -1,0 +1,21 @@
+@startuml
+
+rectangle 感恩牆劃位系統\n後台:頁面 {
+    
+    usecase "選擇位置頁\n(感恩牆: 選擇位置頁)" as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase "ChoosePage_Onload.php" as FILE1
+      usecase "choosepage.css" as FILE2
+      usecase "Choosepage_View_CanvasBlock.php" as FILE3
+      usecase "ChoosePage.js" as FILE4
+      usecase "ChoosePage_php_unset_session.php" as FILE5
+    }
+}
+
+PG1 .right.> WoodySnippets
+
+@enduml

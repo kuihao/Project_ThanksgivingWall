@@ -1,0 +1,21 @@
+@startuml
+
+rectangle 感恩牆劃位系統n後台頁面 {
+    
+    usecase 恭喜劃位頁n(感恩牆恭喜劃位頁) as PG1
+
+}
+
+rectangle Wordpress外掛 {
+    package WoodySnippets {
+      usecase Calendar.js as FILE1
+      usecase Calendar.css as FILE2
+      usecase php_session_destory.php as FILE3
+    }
+}
+
+
+PG1 .. WoodySnippets
+
+
+@enduml

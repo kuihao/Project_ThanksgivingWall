@@ -1,0 +1,58 @@
+@startuml
+
+package 首頁\nHomePage <<Rectangle>> {
+    package Homepage_View_CanvasBlock.php <<Rectangle>> {
+        class grid_item <<div>>
+    }
+}
+
+package 選擇位置頁\nChoosePage <<Rectangle>> {
+  class ChoosePage_Onload <<phpfile>>
+  package Choosepage_View_CanvasBlock.php <<Rectangle>> {
+    class grid_container <<div>>
+  }
+}
+
+package 報名劃位表單頁\nFormPage <<Rectangle>> {
+  class FormPage_Onload <<phpfile>>
+  class FormPage_ajax <<phpfile>>
+}
+
+package 位置解鎖或\n清除劃記頁\nUnlockPage <<Rectangle>> {
+  class UnlockPage_ajax <<phpfile>>
+}
+
+package AJAX_ServerToClient <<Folder>> {
+    class FormPage_ajax_set_status_booked <<phpfile>>
+    class Unlock_Status <<phpfile>>
+}
+
+class myphpfunction << (C, yellow) >> <<Controller>> {
+  +get_status_permition()
+  +get_position()
+  +get_status_permition_count()
+  +set_status_blocking()
+  +set_status_booked()
+  +set_status_unlosk()
+}
+
+database wpdb [
+<b>wpdb資料庫
+----
+資料表：booking_info
+....
+資料表：wp_db_element_form
+]
+
+myphpfunction -> wpdb
+FormPage_ajax_set_status_booked .down..> myphpfunction : set_status_booked() >
+Unlock_Status .> myphpfunction : set_status_unlosk() >
+grid_item .down...> myphpfunction : < get_status_permition_count()
+ChoosePage_Onload ..> myphpfunction : < get_position()
+grid_container ..> myphpfunction : < get_status_permition
+FormPage_Onload ..> myphpfunction : get_status_permition : set_status_blocking
+FormPage_ajax ..> FormPage_ajax_set_status_booked 
+UnlockPage_ajax ..> Unlock_Status
+
+
+@enduml
